@@ -12,7 +12,10 @@ public class CopApplication {
 	
 	@Bean
     public JedisConnectionFactory jedisConnectionFactory() {
-        return new JedisConnectionFactory();
+	    JedisConnectionFactory jedisCoFactory = new JedisConnectionFactory();
+	    jedisCoFactory.setHostName("locahost");
+	    jedisCoFactory.setPort(6379);
+        return jedisCoFactory;
     }
  
     @Bean
