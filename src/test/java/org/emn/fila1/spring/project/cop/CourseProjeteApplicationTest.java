@@ -1,4 +1,4 @@
-package org.emn.fila1.spring.project;
+package org.emn.fila1.spring.project.cop;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -7,7 +7,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class CopApplicationTests {
+public class CourseProjeteApplicationTest {
 
 	@Test
 	public void contextLoads() {

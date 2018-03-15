@@ -4,18 +4,17 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>org.emn.fila1.spring.project</groupId>
-	<artifactId>COP</artifactId>
+	<artifactId>cop</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>jar</packaging>
 
-	<name>COP</name>
-	<description>Projet Spring pour le module de projection de course</description>
+	<name>Course Projetee</name>
+	<description>Compute the 'course projetee' entities.</description>
 
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>2.0.0.RELEASE</version>
-		<relativePath/> <!-- lookup parent from repository -->
+		<version>1.5.10.RELEASE</version>
 	</parent>
 
 	<properties>
@@ -54,5 +53,20 @@
 		</plugins>
 	</build>
 
+    <repositories>
+        <repository>
+            <id>spring-releases</id>
+            <name>Spring Releases</name>
+            <url>https://repo.spring.io/libs-release</url>
+        </repository>
+    </repositories>
+    
+    <pluginRepositories>
+        <pluginRepository>
+            <id>spring-releases</id>
+            <name>Spring Releases</name>
+            <url>https://repo.spring.io/libs-release</url>
+        </pluginRepository>
+    </pluginRepositories>
 
 </project>

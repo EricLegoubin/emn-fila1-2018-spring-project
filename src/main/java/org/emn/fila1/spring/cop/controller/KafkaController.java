@@ -1,7 +1,7 @@
-package org.emn.fila1.spring.controller;
+package org.emn.fila1.spring.cop.controller;
 
 
-import org.emn.fila1.spring.service.KafkaSender;
+import org.emn.fila1.spring.cop.service.KafkaSender;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
