@@ -28,8 +28,10 @@ public class Receiver {
 	
 	@KafkaListener(topics="mocks")
 	public void receiveMocks(ConsumerRecord<?, ?> cr) {
-		CourseMapper courseMapper = new CourseMapper();
-		List<Course> coursesToSimulate = courseMapper.courseDTOsToCourses((List<CourseDTO>) cr.value());
+//		Would be used if mocks were transfered as dto, but we need ALL the information here.
+//		CourseMapper courseMapper = new CourseMapper();
+//		List<Course> coursesToSimulate = courseMapper.courseDTOsToCourses((List<CourseDTO>) cr.value());
+		List<Course> coursesToSimulate = (List<Course>) cr.value();
 		GeoApplication.setSimulateur(new Simulateur(coursesToSimulate));
 		latch.countDown();
 	}

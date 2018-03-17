@@ -19,7 +19,7 @@ public class GeoApplication {
 	}
 
 	public static void setSimulateur(Simulateur simulateur) {
-		simulateur = simulateur;
+		GeoApplication.simulateur = simulateur;
 	}
 	
 	
