@@ -12,12 +12,16 @@ public class CourseDTO {
 	
 	private List<Long> passageIds;
 
-	public CourseDTO(Long id, String idTrain, List<Long> sillonIds, List<Long> passageIds) {
+	private List<Long> passageTheoriqueIds;
+
+	
+	public CourseDTO(Long id, String idTrain, List<Long> sillonIds, List<Long> passageIds, List<Long> passageTheoriqueIds) {
 		super();
 		this.id = id;
 		this.idTrain = idTrain;
 		this.sillonIds = sillonIds;
 		this.passageIds = passageIds;
+		this.passageTheoriqueIds = passageTheoriqueIds;
 	}
 	
 }

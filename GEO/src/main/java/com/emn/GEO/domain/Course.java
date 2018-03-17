@@ -12,12 +12,16 @@ public class Course {
 	
 	private List<Passage> passages;
 
-	public Course(Long id, String idTrain, List<Sillon> sillons, List<Passage> passages) {
+	private List<Passage> passagesTheoriques;
+	
+	
+	public Course(Long id, String idTrain, List<Sillon> sillons, List<Passage> passages, List<Passage> passagesTheoriques) {
 		super();
 		this.id = id;
 		this.idTrain = idTrain;
 		this.sillons = sillons;
 		this.passages = passages;
+		this.passagesTheoriques = passagesTheoriques;
 	}
 	
 	
