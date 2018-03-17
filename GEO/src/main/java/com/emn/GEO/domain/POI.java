@@ -15,4 +15,7 @@ public class POI {
 		this.nom = nom;
 	}
 	
+	public Long getId() {
+		return this.id;
+	}
 }
