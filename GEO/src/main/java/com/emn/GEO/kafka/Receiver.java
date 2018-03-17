@@ -1,4 +1,4 @@
-package com.emn.GEO.Kafka;
+package com.emn.GEO.kafka;
 
 import java.util.concurrent.CountDownLatch;
 

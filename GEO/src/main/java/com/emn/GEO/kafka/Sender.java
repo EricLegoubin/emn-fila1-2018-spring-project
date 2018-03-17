@@ -1,4 +1,4 @@
-package com.emn.GEO.Kafka;
+package com.emn.GEO.kafka;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.kafka.core.KafkaTemplate;
