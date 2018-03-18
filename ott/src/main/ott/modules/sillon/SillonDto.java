@@ -4,7 +4,7 @@ import main.ott.modules.point.PointDto;
 
 import java.util.Set;
 
-public class SillionDto {
+public class SillonDto {
 
     private Long id;
 
@@ -12,7 +12,7 @@ public class SillionDto {
 
     private Set<PointDto> points;
 
-    public SillionDto(Long id, Set<PointDto> poiIds) {
+    public SillonDto(Long id, Set<PointDto> poiIds) {
         this.id = id;
         this.points = poiIds;
     }

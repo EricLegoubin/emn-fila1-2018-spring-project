@@ -18,7 +18,12 @@ public class PointBo {
     @Column(name = "nom")
     private String nom;
 
-    public Long getId() {
+    public PointBo(Long id, String nom) {
+		this.id = id;
+		this.nom = nom;
+	}
+
+	public Long getId() {
         return id;
     }
 

@@ -1,7 +1,7 @@
 package main.ott.modules.course;
 
 import main.ott.modules.passage.PassageDto;
-import main.ott.modules.sillon.SillionDto;
+import main.ott.modules.sillon.SillonDto;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -14,11 +14,11 @@ public class CourseDto {
 
     private String idTrain;
 
-    private Set<SillionDto> sillons;
+    private Set<SillonDto> sillons;
 
     private Set<PassageDto> computedPassages;
 
-    public CourseDto(Long id, String idTrain, Set<SillionDto> sillons, Set<PassageDto> computedPassages) {
+    public CourseDto(Long id, String idTrain, Set<SillonDto> sillons, Set<PassageDto> computedPassages) {
         super();
         this.id = id;
         this.idTrain = idTrain;
@@ -50,11 +50,11 @@ public class CourseDto {
         this.computedPassages = computedPassages;
     }
 
-    public Set<SillionDto> getSillons() {
+    public Set<SillonDto> getSillons() {
         return sillons;
     }
 
-    public void setSillons(Set<SillionDto> sillons) {
+    public void setSillons(Set<SillonDto> sillons) {
         this.sillons = sillons;
     }
 
