@@ -11,8 +11,13 @@ public class SillonDto {
     private Long version;
 
     private Set<PointDto> points;
+    
+    public SillonDto() {
+    	super();
+    }
 
     public SillonDto(Long id, Set<PointDto> poiIds) {
+    	super();
         this.id = id;
         this.points = poiIds;
     }

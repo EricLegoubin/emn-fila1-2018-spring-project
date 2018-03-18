@@ -44,7 +44,7 @@ public class PointService {
             return null;
         }
 
-        return pointBoDtoMapper.map(pointBo);
+        return pointBoDtoMapper.mapToDto(pointBo);
     }
 
 }

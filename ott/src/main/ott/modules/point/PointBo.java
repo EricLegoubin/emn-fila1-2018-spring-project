@@ -3,7 +3,7 @@ package main.ott.modules.point;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "point")
+@Table(name = "points")
 public class PointBo {
 
     @Version
@@ -17,8 +17,13 @@ public class PointBo {
 
     @Column(name = "nom")
     private String nom;
+    
+    public PointBo() {
+    	super();
+    }
 
     public PointBo(Long id, String nom) {
+    	super();
 		this.id = id;
 		this.nom = nom;
 	}

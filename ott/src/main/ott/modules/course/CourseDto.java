@@ -17,6 +17,10 @@ public class CourseDto {
     private Set<SillonDto> sillons;
 
     private Set<PassageDto> computedPassages;
+    
+    public CourseDto() {
+    	super();
+    }
 
     public CourseDto(Long id, String idTrain, Set<SillonDto> sillons, Set<PassageDto> computedPassages) {
         super();

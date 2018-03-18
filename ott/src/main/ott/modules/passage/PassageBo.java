@@ -1,12 +1,13 @@
 package main.ott.modules.passage;
 
 import main.ott.modules.point.PointBo;
+import main.ott.modules.point.PointDto;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
 
 @Entity
-@Table(name = "passage")
+@Table(name = "passages")
 public class PassageBo {
 
     @Id
@@ -23,6 +24,16 @@ public class PassageBo {
 
     @ManyToOne(cascade = CascadeType.ALL)
     private PointBo point;
+    
+    public PassageBo() {
+    	super();
+    }
+
+    public PassageBo(LocalDateTime localDateTime, PointBo point) {
+    	super();
+        this.localDateTime = localDateTime;
+        this.point = point;
+    }
 
     public Long getId() {
         return id;

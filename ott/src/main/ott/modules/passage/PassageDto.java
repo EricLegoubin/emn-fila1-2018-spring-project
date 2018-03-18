@@ -9,8 +9,13 @@ public class PassageDto {
     private LocalDateTime localDateTime;
 
     private PointDto point;
+    
+    public PassageDto() {
+    	super();
+    }
 
     public PassageDto(LocalDateTime localDateTime, PointDto point) {
+    	super();
         this.localDateTime = localDateTime;
         this.point = point;
     }

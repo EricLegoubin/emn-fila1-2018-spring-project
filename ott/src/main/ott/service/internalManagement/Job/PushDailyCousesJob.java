@@ -42,15 +42,15 @@ public class PushDailyCousesJob {
         }
         sender.send("dailyCourse",message);
 
-
-
-
-
     }
 
 
 
 
     @Scheduled(cron = "* * * ? * *")//task scheduled every secon just to see
-    public void cronTest() { }
+    public void cronTest() { 
+    	/*
+    	System.out.println("Test");
+		*/
+    }
 }
