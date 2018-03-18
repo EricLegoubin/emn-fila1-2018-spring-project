@@ -6,6 +6,6 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 @Configuration
 @EnableTransactionManagement
-@ImportResource({"applicationContext.xml"})
+@ImportResource({"hibernateConfig.xml"})
 public class HibernateConfig {
 }

@@ -22,12 +22,8 @@ public class PushDailyCousesJob {
 
     }
 
-
-
-
     @Scheduled(cron = "* * * ? * *")//task scheduled at 1 am
     public void cronTest() {
-        System.out.println(new Date());
-
     }
+
 }

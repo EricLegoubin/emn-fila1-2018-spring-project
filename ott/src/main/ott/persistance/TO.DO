@@ -1,1 +1,0 @@
-CF Ismael generation des objets BO et des methode d'insertion par id fonctionnels

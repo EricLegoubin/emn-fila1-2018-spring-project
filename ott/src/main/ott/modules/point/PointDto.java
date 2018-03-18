@@ -1,10 +1,8 @@
-package main.ott.persistance.point;
+package main.ott.modules.point;
 
 public class PointDto {
 
     private Long id;
-
-
 
     private String nom;
     
@@ -34,4 +32,5 @@ public class PointDto {
     public void setNom(String nom) {
         this.nom = nom;
     }
+
 }
