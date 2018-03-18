@@ -1,4 +1,4 @@
-package main.catalogue.service.internalManagement.Job;
+package main.ott.service.internalManagement.Job;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

@@ -1,4 +1,4 @@
-package main.catalogue.service.dto;
+package main.ott.service.dto;
 
 import java.time.LocalDateTime;
 import java.util.List;

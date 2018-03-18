@@ -1,4 +1,4 @@
-package main.catalogue.service.dto;
+package main.ott.service.dto;
 
 public class PointDto {
 

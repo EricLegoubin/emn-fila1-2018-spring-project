@@ -1,4 +1,4 @@
-package main.catalogue.mapper;
+package main.ott.mapper;
 
 public class PointBoDtoMapper {
 }
