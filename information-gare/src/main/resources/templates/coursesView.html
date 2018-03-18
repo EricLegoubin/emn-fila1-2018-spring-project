@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <title th:if="${type == 'departs'}" th:text="'Départs de ' + ${gare}" ></title>
+    <title th:if="${type == 'arrivees'}" th:text="'Arrivées de ' + ${gare}"></title>
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet" />
+    <link rel="stylesheet" type="text/css" href="../static/css/style.css" th:href="@{/css/style.css}" />
+    <script src="../static/js/jquery-3.3.1.min.js" th:src="@{/js/jquery-3.3.1.min.js}"></script>
+    <script src="../static/js/jquery.marquee.min.js" th:src="@{/js/jquery.marquee.min.js}"></script>
+    <script src="../static/js/clock.js" th:src="@{/js/clock.js}"></script>
+    <script src="../static/js/marquee.js" th:src="@{/js/marquee.js}"></script>
+    <script src="../static/js/communication.js" th:src="@{/js/communication.js}"></script>
+
+</head>
+<body onload="startTime()" th:classappend="${type == 'departs' ? 'departsBody' : 'arriveesBody'}">
+
+<div class="content" th:fragment="resultsList" id="container" >
+    <table class="table" th:classappend="${type == 'departs' ? 'departs' : 'arrivees'}" id="trainsList">
+        <tr th:each="course : ${courses}">
+            <td><span class="numTrain" th:text="${course.numTrain}"></span></td>
+            <td >
+                <span class="heureDepart" th:if="${type == 'departs'}" th:text="${course.heureDepart}"></span>
+                <span class="heureDepart" th:if="${type == 'arrivees'}" th:text="${course.heureArrivee}"></span>
+            </td>
+            <td>
+                <span class="gareArrive" th:if="${type == 'departs'}" th:text="${course.gareArrivee}"></span>
+                <span class="gareArrive" th:if="${type == 'arrivees'}" th:text="${course.gareDepart}"></span>
+            </td>
+            <td>
+                <span class="retard" th:if="${type == 'arrivees'}"  th:text="${course.getArriveeRetardMessage()}"></span>
+                <span class="retard" th:if="${type == 'departs'}"  th:text="${course.getDepartRetardMessage()}"></span>
+            </td>
+        </tr>
+    </table>
+</div>
+<div id="noRace">
+    <span th:if="${type == 'departs'}">Aucun train au départ.</span>
+    <span th:if="${type == 'arrivees'}">Aucune arrivées prévues.</span>
+</div>
+
+<span class="departArrivee depart" th:if="${type == 'departs'}">départs</span>
+<span class="departArrivee arrivee" th:if="${type == 'arrivees'}">arrivées</span>
+
+<div id="footer" th:classappend="${type == 'departs' ? 'departs' : 'arrivees'}">
+    <!--<div class='marquee'>-->
+        <!--Clic rabot pas problem oui ?<span class="space"></span>-->
+        <!--Nous nous excusons d'avance pour les retards éventuels.<span class="space"></span>-->
+        <!--Manger 5 fruits et 5 légumes par jour.<span class="space"></span>-->
+    <!--</div>-->
+    <button id="ajout"> AJOUT LIGNE </button>
+    <button id="retard"> AJOUT RETARD </button>
+    <div id="clock">
+        <span id="hours">20</span>
+        <span id="dot">:</span>
+        <span id="minutes">13</span>
+        <span id="seconds">34</span>
+    </div>
+</div>
+
+</body>
+</html>

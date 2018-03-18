@@ -1,0 +1,156 @@
+html, body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Roboto', 'Ubuntu', 'Arial',serif;
+    font-size: 80px;
+    overflow: hidden;
+}
+
+#container {
+    margin-bottom: 70px;
+}
+
+.table {
+    width: 100%;
+}
+
+table, th, td {
+    border-collapse: collapse;
+}
+
+.table.departs tr:nth-child(2n),.departsBody {
+    background-color: #014E9E;
+}
+
+.table.departs tr:nth-child(2n+1),.departs {
+    background-color: #03196C;
+}
+
+.table.arrivees tr:nth-child(2n),.arriveesBody {
+    background-color: #2B5B4B;
+}
+
+.table.arrivees tr:nth-child(2n+1),.arrivees {
+    background-color: #14402F;
+}
+
+td:nth-child(1) {
+    width: 9%;
+    padding-left: 10px;
+}
+
+td:nth-child(2) {
+    width: 15%;
+}
+
+td:nth-child(3) {
+    width: 56%;
+}
+
+td:nth-child(4) {
+    width: 20%;
+}
+
+.numTrain, .heureDepart, gareArrive {
+    margin-right: 20px;
+}
+
+.numTrain {
+    color: white;
+    font-size: 22px;
+}
+
+.heureDepart {
+    color: #ffe563;
+}
+
+.gareArrive {
+    color: white;
+    font-weight: bold;
+}
+
+.departArrivee {
+    font-size: 130px;
+    font-weight: bold;
+    position: fixed;
+    bottom: 100px;
+    right: 0;
+    transform: translate(25%, -100%) rotate(-90deg);
+}
+
+.depart {
+    color: #176cbf;
+}
+
+.arrivee {
+    color: #69837A;
+}
+
+#footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    height: 70px;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+
+}
+
+#clock {
+    align-content: flex-end;
+    /*position: absolute;*/
+    /*bottom: 0px;*/
+    /*right: 20px;*/
+    padding: 5px 10px;
+    border-radius: 15px 15px 0 0;
+    border: 4px solid white;
+    border-bottom-width: 0;
+    background-color: #030943;
+    height: 100%;
+    display: flex;
+    align-items: baseline;
+    justify-content: flex-start;
+    margin-right: 30px;
+}
+
+#hours, #minutes, #dot {
+    font-size: 60px;
+    color: white;
+}
+
+#seconds {
+    margin-left: 7px;
+    font-size: 30px;
+    color: #A3623A;
+}
+
+.marquee {
+    overflow: hidden;
+    font-size: 50px;
+    color: white;
+    display: flex;
+    align-items: center;
+    white-space:nowrap;
+    text-overflow:ellipsis;
+}
+
+.space {
+    padding-right: 600px;
+}
+
+.retard{
+    font-size: 25px;
+    color: #ffe563;
+    white-space: nowrap;
+    margin-right: 200px;
+}
+
+#noRace {
+    display: none;
+    color: white;
+    font-size: 70px;
+    height: calc(100vh - 140px);
+    align-items: center;
+    justify-content: center;
+}
