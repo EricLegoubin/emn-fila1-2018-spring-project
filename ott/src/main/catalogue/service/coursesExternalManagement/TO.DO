@@ -1,0 +1,1 @@
+Ouverture REST vers l'exterieur pour inserer les course manager ettout et tout
