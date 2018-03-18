@@ -1,12 +1,23 @@
 package org.emn.fila1.spring.cop.model;
 
+import org.springframework.data.annotation.Id;
+import org.springframework.data.redis.core.RedisHash;
+
 import java.io.Serializable;
+
 
 public class Pi implements Serializable {
 
+	private static final long serialVersionUID = 2451555111829706003L;
+
+	@Id
 	String id;
 	boolean isGare;
 	String nom;
+
+	public Pi() {
+		super();
+	}
 	
 	public Pi(String id, boolean isGare, String nom)
 	{
