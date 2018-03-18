@@ -10,7 +10,8 @@ public class Sender {
 
     public static Sender sender = new Sender();
 
-    private Sender() {};
+    private Sender() {
+    }
 
     @Autowired
     private KafkaTemplate<String, String> template;

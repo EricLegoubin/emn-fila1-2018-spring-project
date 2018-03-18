@@ -15,24 +15,24 @@ import java.util.Map;
 @Configuration
 public class KafkaConf {
 
-        @Value("${kafka.host:localhost}")//todo
-        private String kafkaHost;
+    @Value("${kafka.host:localhost}")//todo
+    private String kafkaHost;
 
-        @Value("${kafka.port:9092}")//todo
-        private int port;
+    @Value("${kafka.port:9092}")//todo
+    private int port;
 
-        @Bean
-        public ProducerFactory<String, String> producerFactory() {
-            Map<String, Object> configProps = new HashMap<>();
-            configProps.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, kafkaHost + ":" + port);
-            configProps.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, StringSerializer.class);
-            configProps.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, StringSerializer.class);
-            return new DefaultKafkaProducerFactory<>(configProps);
-        }
-
-        @Bean
-        public KafkaTemplate<String, String> kafkaTemplate() {
-            return new KafkaTemplate<>(producerFactory());
-        }
-
+    @Bean
+    public ProducerFactory<String, String> producerFactory() {
+        Map<String, Object> configProps = new HashMap<>();
+        configProps.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, kafkaHost + ":" + port);
+        configProps.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, StringSerializer.class);
+        configProps.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, StringSerializer.class);
+        return new DefaultKafkaProducerFactory<>(configProps);
     }
+
+    @Bean
+    public KafkaTemplate<String, String> kafkaTemplate() {
+        return new KafkaTemplate<>(producerFactory());
+    }
+
+}
