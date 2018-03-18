@@ -1,4 +1,4 @@
-package main.ott.service.dto;
+package main.ott.persistance.point;
 
 public class PointDto {
 
@@ -7,6 +7,10 @@ public class PointDto {
 
 
     private String nom;
+    
+    public PointDto() {
+    	super();
+    }
 
     public PointDto(Long id, String nom) {
         super();

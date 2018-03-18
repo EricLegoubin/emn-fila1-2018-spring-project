@@ -1,4 +1,4 @@
-package main.ott.service.dto;
+package main.ott.persistance.sillon;
 
 import java.util.List;
 

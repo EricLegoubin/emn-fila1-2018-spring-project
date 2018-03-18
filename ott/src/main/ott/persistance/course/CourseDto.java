@@ -1,4 +1,4 @@
-package main.ott.service.dto;
+package main.ott.persistance.course;
 
 import java.time.LocalDateTime;
 import java.util.List;
