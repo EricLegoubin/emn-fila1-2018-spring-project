@@ -1,15 +1,10 @@
-package org.emn.fila1.spring.model;
+package org.emn.fila1.spring.cop.model;
 
 import java.io.Serializable;
 import java.sql.Timestamp;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-
-@Entity
 public class Passage implements Serializable {
 
-	@Id
 	String id;
 	Pi pi;
 	String idCourse;

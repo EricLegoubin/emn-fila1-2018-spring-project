@@ -1,14 +1,9 @@
-package org.emn.fila1.spring.model;
+package org.emn.fila1.spring.cop.model;
 
 import java.io.Serializable;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-
-@Entity
 public class Pi implements Serializable {
 
-	@Id
 	String id;
 	boolean isGare;
 	String nom;
