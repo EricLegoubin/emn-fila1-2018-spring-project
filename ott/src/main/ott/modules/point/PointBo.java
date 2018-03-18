@@ -51,5 +51,9 @@ public class PointBo {
     public void setVersion(Long version) {
         this.version = version;
     }
+    
+    public String toString() {
+    	return nom+"("+id+")";
+    }
 
 }
