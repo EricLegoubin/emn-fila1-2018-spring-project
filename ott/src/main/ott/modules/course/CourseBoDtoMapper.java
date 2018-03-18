@@ -1,4 +1,4 @@
-package main.ott.persistance.course;
+package main.ott.modules.course;
 
 public class CourseBoDtoMapper {
 }

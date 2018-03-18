@@ -2,10 +2,8 @@ package main.ott.service.internalManagement.Job;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import jdk.nashorn.internal.parser.JSONParser;
 import main.ott.kafka.Sender;
-import main.ott.service.dto.CourseDto;
-import netscape.javascript.JSObject;
+import main.ott.modules.course.CourseDto;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,7 +11,6 @@ import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -55,8 +52,5 @@ public class PushDailyCousesJob {
 
 
     @Scheduled(cron = "* * * ? * *")//task scheduled every secon just to see
-    public void cronTest() {
-        System.out.println(new Date());
-
-    }
+    public void cronTest() { }
 }

@@ -1,5 +1,6 @@
 package main.ott.commands;
 
+import main.ott.modules.point.PointDto;
 import main.ott.modules.point.PointService;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,7 +20,8 @@ public class HibernateTest {
 
     @ShellMethod("test")
     public void test(Long id) {
-        System.out.println(pointService.getPoint(id));
+        PointDto point = pointService.getPoint(id);
+        System.out.println(point);
     }
 
 }
