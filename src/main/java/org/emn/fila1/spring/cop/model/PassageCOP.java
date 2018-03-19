@@ -17,6 +17,7 @@ public class PassageCOP implements Serializable {
     Timestamp theoricalDate;
     Timestamp calculatedDate;
     Timestamp operatorDate;
+    boolean cancelled;
 
     public PassageCOP() {
         super();
@@ -29,6 +30,7 @@ public class PassageCOP implements Serializable {
         this.theoricalDate = passage.getDate();
         this.calculatedDate = this.theoricalDate;
         this.operatorDate = this.theoricalDate;
+        this.cancelled=false;
     }
 
 
@@ -78,6 +80,14 @@ public class PassageCOP implements Serializable {
 
     public void setOperatorDate(Timestamp operatorDate) {
         this.operatorDate = operatorDate;
+    }
+
+    public boolean isCancelled() {
+        return cancelled;
+    }
+
+    public void setCancelled(boolean cancelled) {
+        this.cancelled = cancelled;
     }
 }
 
