@@ -19,7 +19,7 @@ import java.util.List;
 public class PushDailyCousesJob {
 
     private static final Logger log = LoggerFactory.getLogger(PushDailyCousesJob.class);
-    private final String uri = "urlto";
+
     ObjectMapper mapper = new ObjectMapper();
 
     @Autowired
@@ -29,7 +29,7 @@ public class PushDailyCousesJob {
     public void pushCourses() {
         log.info("Sending Today's Courses ");
         RestTemplate restTemplate = new RestTemplate();
-        String result = restTemplate.getForObject(uri, String.class);
+
         //TODO call DB requete: toutes les courses ou date de départ aujourdui
         //Todo call Mapper
         List<CourseDto> courses = new ArrayList<>();

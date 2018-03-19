@@ -2,11 +2,12 @@ package main.ott.modules.passage;
 
 import main.ott.modules.point.PointDto;
 
+import java.sql.Timestamp;
 import java.time.LocalDateTime;
 
 public class PassageDto {
 
-    private LocalDateTime localDateTime;
+    private Timestamp localDateTime;
 
     private PointDto point;
     
@@ -14,7 +15,7 @@ public class PassageDto {
     	super();
     }
 
-    public PassageDto(LocalDateTime localDateTime, PointDto point) {
+    public PassageDto(Timestamp localDateTime, PointDto point) {
     	super();
         this.localDateTime = localDateTime;
         this.point = point;
@@ -28,11 +29,11 @@ public class PassageDto {
         this.point = point;
     }
 
-    public LocalDateTime getLocalDateTime() {
+    public Timestamp getLocalDateTime() {
         return localDateTime;
     }
 
-    public void setLocalDateTime(LocalDateTime localDateTime) {
+    public void setLocalDateTime(Timestamp localDateTime) {
         this.localDateTime = localDateTime;
     }
 }

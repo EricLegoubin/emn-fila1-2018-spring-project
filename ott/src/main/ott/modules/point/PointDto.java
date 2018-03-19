@@ -6,14 +6,18 @@ public class PointDto {
 
     private String nom;
 
+    private boolean isGare;
+
+
     public PointDto() {
         super();
     }
 
-    public PointDto(Long id, String nom) {
+    public PointDto(Long id, String nom, boolean isGare) {
         super();
         this.id = id;
         this.nom = nom;
+        this.isGare = isGare;
     }
 
     public Long getId() {
@@ -36,4 +40,11 @@ public class PointDto {
         return nom + "(" + id + ")";
     }
 
+    public boolean isGare() {
+        return isGare;
+    }
+
+    public void setGare(boolean gare) {
+        isGare = gare;
+    }
 }
