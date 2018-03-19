@@ -1,5 +1,8 @@
 package main.ott.modules.sillon;
 
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.Setter;
 import main.ott.modules.point.PointBo;
 import main.ott.modules.point.PointDto;
 
@@ -8,10 +11,13 @@ import java.util.Set;
 
 @Entity(name = "sillons")
 @Table(name = "sillons")
+@Getter
+@Setter
+@EqualsAndHashCode(of = {"id"})
 public class SillonBo {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
     @Column(name = "id")
     private Long id;
 
@@ -26,21 +32,5 @@ public class SillonBo {
     	super();
         this.id = id;
         this.points = poiIds;
-    }
-
-	public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public Set<PointBo> getPoints() {
-        return points;
-    }
-
-    public void setPoints(Set<PointBo> points) {
-        this.points = points;
     }
 }

@@ -1,17 +1,26 @@
 package main.ott.modules.sillon;
 
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.Setter;
 import main.ott.modules.point.PointDto;
 
 import java.util.Set;
 
+@Getter
+@Setter
+@EqualsAndHashCode(of ={"id"})
 public class SillonDto {
 
+    /**
+     * Id du sillion
+     */
     private Long id;
-
-    private Long version;
-
+    /**
+     * Points d'interets composants le sillion.
+     */
     private Set<PointDto> points;
-    
+
     public SillonDto() {
     	super();
     }
@@ -20,29 +29,5 @@ public class SillonDto {
     	super();
         this.id = id;
         this.points = poiIds;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public Set<PointDto> getPoints() {
-        return points;
-    }
-
-    public void setPoints(Set<PointDto> points) {
-        this.points = points;
-    }
-
-    public Long getVersion() {
-        return version;
-    }
-
-    public void setVersion(Long version) {
-        this.version = version;
     }
 }
