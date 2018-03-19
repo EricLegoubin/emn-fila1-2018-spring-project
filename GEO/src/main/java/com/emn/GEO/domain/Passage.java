@@ -39,5 +39,13 @@ public class Passage implements Runnable {
 		return poi;
 	}
 
+	public Course getCourse() {
+		return course;
+	}
+
+	public void setCourse(Course course) {
+		this.course = course;
+	}
+
 	
 }
