@@ -34,5 +34,4 @@ public class CourseController {
         return courseService.checkCourseId(id);
     }
 
-
 }

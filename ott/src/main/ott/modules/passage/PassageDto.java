@@ -20,7 +20,7 @@ public class PassageDto {
     /**
      * L'heure de passage
      */
-    private Timestamp localDateTime;
+    private Timestamp timestamp;
     /**
      * Le point où le train passe
      */
@@ -35,9 +35,9 @@ public class PassageDto {
     	super();
     }
 
-    public PassageDto(Timestamp localDateTime, PointDto point) {
+    public PassageDto(Timestamp timestamp, PointDto point) {
     	super();
-        this.localDateTime = localDateTime;
+        this.timestamp = timestamp;
         this.point = point;
     }
 
