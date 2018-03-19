@@ -14,13 +14,13 @@ public class Sillon implements Serializable{
 
 	@Id
 	String id;
-	List<Pi> pis;
+	List<POI> pis;
 
 	public Sillon() {
 		super();
 	}
 	
-	public Sillon(String id, List<Pi> pis)
+	public Sillon(String id, List<POI> pis)
 	{
 		this.id = id;
 		this.pis = pis;
@@ -34,11 +34,11 @@ public class Sillon implements Serializable{
 		this.id = id;
 	}
 
-	public List<Pi> getPis() {
+	public List<POI> getPis() {
 		return pis;
 	}
 
-	public void setPis(List<Pi> pis) {
+	public void setPis(List<POI> pis) {
 		this.pis = pis;
 	}
 }

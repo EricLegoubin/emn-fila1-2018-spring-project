@@ -14,7 +14,7 @@ public class Passage implements Serializable {
 
 	@Id
 	String id;
-	Pi pi;
+	POI poi;
 	String idCourse;
 	Date date;
 
@@ -22,9 +22,9 @@ public class Passage implements Serializable {
 		super();
 	}
 
-	public Passage(String id, Pi pi, String idCourse, Timestamp date) {
+	public Passage(String id, POI poi, String idCourse, Timestamp date) {
 		this.id = id;
-		this.pi = pi;
+		this.poi = poi;
 		this.idCourse = idCourse;
 		this.date = date;
 	}
@@ -37,12 +37,12 @@ public class Passage implements Serializable {
 		this.id = id;
 	}
 
-	public Pi getPi() {
-		return pi;
+	public POI getPoi() {
+		return poi;
 	}
 
-	public void setPi(Pi pi) {
-		this.pi = pi;
+	public void setPoi(POI poi) {
+		this.poi = poi;
 	}
 
 	public String getIdCourse() {
