@@ -1,19 +1,13 @@
 package main.ott.modules.passage;
 
-import org.modelmapper.ModelMapper;
+import main.ott.modules.base.Mapper;
 import org.springframework.stereotype.Component;
 
 @Component
-public class PassageBoDtoMapper {
-	
-	private static ModelMapper modelMapper = new ModelMapper();
-	
-	public static PassageDto mapToDto(PassageBo p) {
-		return modelMapper.map(p, PassageDto.class);
-	}
-	
-	public static PassageBo mapToBo(PassageDto dto) {
-		return modelMapper.map(dto, PassageBo.class);
+public class PassageBoDtoMapper extends Mapper<PassageBo, PassageDto> {
+
+	public PassageBoDtoMapper() {
+		super(PassageBo.class, PassageDto.class);
 	}
 
 }
