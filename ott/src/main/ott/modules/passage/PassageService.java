@@ -9,11 +9,11 @@ import javax.transaction.Transactional;
 
 @Component
 @Transactional
-public class PassageService extends Service<PassageBo, PassageDto> {
+public class PassageService extends Service<PassageBo> {
 
     @Autowired
-    protected PassageService(SessionFactory sessionFactory, PassageBoDtoMapper passageBoDtoMapper) {
-        super(PassageBo.class, sessionFactory, passageBoDtoMapper);
+    protected PassageService(SessionFactory sessionFactory) {
+        super(PassageBo.class, sessionFactory);
     }
 
 }

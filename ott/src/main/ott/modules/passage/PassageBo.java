@@ -3,16 +3,18 @@ package main.ott.modules.passage;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
+import main.ott.modules.course.CourseBo;
 import main.ott.modules.point.PointBo;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.Set;
 
 @Entity(name = "passages")
 @Table(name = "passages")
 @Getter
 @Setter
-@EqualsAndHashCode(of={"id"})
+@EqualsAndHashCode(of={"id", "version"})
 public class PassageBo {
 
     @Id
@@ -27,7 +29,7 @@ public class PassageBo {
     @Column(name = "dateTime")
     private LocalDateTime localDateTime;
 
-    @ManyToOne(cascade = CascadeType.REMOVE)
+    @ManyToOne(cascade = CascadeType.ALL)
     private PointBo point;
 
     public PassageBo() {

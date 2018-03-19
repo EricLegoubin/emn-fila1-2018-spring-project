@@ -14,28 +14,23 @@ import javax.transaction.Transactional;
 import java.util.Optional;
 
 @Transactional
-public abstract class Service<T, E> {
+public abstract class Service<T> {
 
-    private Mapper<T, E> mapper;
     private Class<T> boClass;
     private SessionFactory sessionFactory;
 
-    protected Service(Class<T> boClass, SessionFactory sessionFactory, Mapper<T, E> mapper) {
+    protected Service(Class<T> boClass, SessionFactory sessionFactory) {
         this.boClass = boClass;
         this.sessionFactory = sessionFactory;
-        this.mapper = mapper;
     }
 
-    protected Optional<E> getSingleResult(CriteriaQuery<T> criteriaQuery) {
+    protected Optional<T> getSingleResult(CriteriaQuery<T> criteriaQuery) {
         Query<T> query = sessionFactory.getCurrentSession().createQuery(criteriaQuery);
-        T returnedBo;
         try {
-            returnedBo = query.getSingleResult();
+            return Optional.of(query.getSingleResult());
         } catch(NoResultException noResultException) {
             return Optional.empty();
         }
-        E returnedValue = mapper.bo2Dto(returnedBo);
-        return Optional.of(returnedValue);
     }
 
     protected String getTableName() {
@@ -44,7 +39,7 @@ public abstract class Service<T, E> {
         return persister.getTableName();
     }
 
-    public Optional<E> getById(Long id, String idColumn) {
+    public Optional<T> getById(Long id, String idColumn) {
         Session session = sessionFactory.getCurrentSession();
 
         CriteriaBuilder criteriaBuilder = session.getCriteriaBuilder();
@@ -55,13 +50,13 @@ public abstract class Service<T, E> {
         return getSingleResult(criteriaQuery);
     }
 
-    public Optional<E> getById(Long id) {
+    public Optional<T> getById(Long id) {
         return getById(id, "id");
     }
 
-    public void create(E dto) {
-        T bo = mapper.dto2Bo(dto);
-        sessionFactory.getCurrentSession().save(bo);
+    public void create(T bo) {
+        Session session = sessionFactory.getCurrentSession();
+        session.save(bo);
     }
 
     public int deleteAll() {

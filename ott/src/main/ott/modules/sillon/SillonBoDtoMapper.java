@@ -1,20 +1,13 @@
 package main.ott.modules.sillon;
 
-import org.modelmapper.ModelMapper;
+import main.ott.modules.base.Mapper;
+import org.springframework.stereotype.Component;
 
-import main.ott.modules.sillon.SillonBo;
-import main.ott.modules.sillon.SillonDto;
+@Component
+public class SillonBoDtoMapper extends Mapper<SillonBo, SillonDto> {
 
-public class SillonBoDtoMapper {
-	
-private static ModelMapper modelMapper = new ModelMapper();
-	
-	public static SillonDto mapToDto(SillonBo p) {
-		return modelMapper.map(p, SillonDto.class);
+	public SillonBoDtoMapper() {
+		super(SillonBo.class, SillonDto.class);
 	}
-	
-	public static SillonBo mapToBo(SillonDto dto) {
-		return modelMapper.map(dto, SillonBo.class);
-	}
-	
+
 }

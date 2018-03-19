@@ -9,11 +9,11 @@ import javax.transaction.Transactional;
 
 @Component
 @Transactional
-public class PointService extends Service<PointBo, PointDto> {
+public class PointService extends Service<PointBo> {
 
     @Autowired
-    public PointService(SessionFactory sessionFactory, PointBoDtoMapper pointBoDtoMapper) {
-        super(PointBo.class, sessionFactory, pointBoDtoMapper);
+    public PointService(SessionFactory sessionFactory) {
+        super(PointBo.class, sessionFactory);
     }
 
 }
