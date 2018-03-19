@@ -11,7 +11,7 @@ public class GeoApplication {
 	private static Simulateur simulateur;
 	
 	public static void main(String[] args) {
-		SpringApplication.run(GeoApplication.class, args).close();
+		SpringApplication.run(GeoApplication.class, args);
 	}
 
 	public static Simulateur getSimulateur() {
