@@ -17,6 +17,7 @@ import java.util.Set;
 public class CourseBo {
 
     @Version
+    @Column(name = "version")
     private Long version;
 
     @Id

@@ -42,4 +42,5 @@ public class CourseDto {
         this.sillons = sillons;
         this.computedPassages = computedPassages;
     }
+
 }

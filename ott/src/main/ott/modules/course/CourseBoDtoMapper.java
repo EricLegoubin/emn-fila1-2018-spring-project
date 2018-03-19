@@ -1,11 +1,9 @@
 package main.ott.modules.course;
 
 import main.ott.modules.base.Mapper;
-import org.modelmapper.ModelMapper;
+import org.springframework.stereotype.Component;
 
-import main.ott.modules.course.CourseBo;
-import main.ott.modules.course.CourseDto;
-
+@Component
 public class CourseBoDtoMapper extends Mapper<CourseBo, CourseDto> {
 
 	public CourseBoDtoMapper() {
