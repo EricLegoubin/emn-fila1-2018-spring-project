@@ -12,3 +12,5 @@ buildNumber.properties
 !/.mvn/wrapper/maven-wrapper.jar
 
 .idea*
+
+OTT/spring-shell\.log
