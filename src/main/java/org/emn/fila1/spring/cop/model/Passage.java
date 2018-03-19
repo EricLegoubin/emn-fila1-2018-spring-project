@@ -5,6 +5,7 @@ import org.springframework.data.redis.core.RedisHash;
 
 import java.io.Serializable;
 import java.sql.Timestamp;
+import java.util.Date;
 
 
 public class Passage implements Serializable {
@@ -15,7 +16,7 @@ public class Passage implements Serializable {
 	String id;
 	Pi pi;
 	String idCourse;
-	Timestamp date;
+	Date date;
 
 	public Passage() {
 		super();
@@ -52,11 +53,11 @@ public class Passage implements Serializable {
 		this.idCourse = idCourse;
 	}
 
-	public Timestamp getDate() {
+	public Date getDate() {
 		return date;
 	}
 
-	public void setDate(Timestamp date) {
+	public void setDate(Date date) {
 		this.date = date;
 	}
 }
