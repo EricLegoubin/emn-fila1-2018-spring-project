@@ -6,7 +6,7 @@ import org.springframework.data.redis.core.RedisHash;
 import java.io.Serializable;
 
 
-public class Pi implements Serializable {
+public class POI implements Serializable {
 
 	private static final long serialVersionUID = 2451555111829706003L;
 
@@ -15,11 +15,11 @@ public class Pi implements Serializable {
 	boolean isGare;
 	String nom;
 
-	public Pi() {
+	public POI() {
 		super();
 	}
 	
-	public Pi(String id, boolean isGare, String nom)
+	public POI(String id, boolean isGare, String nom)
 	{
 		this.id = id;
 		this.isGare = isGare;
