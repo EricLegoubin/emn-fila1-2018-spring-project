@@ -26,13 +26,11 @@ public class CourseBo {
 
     @OneToMany(fetch = FetchType.LAZY)
     private Set<PassageBo> computedPassages;
-    
+
     public CourseBo() {
-    	super();
     }
-    
+
     public CourseBo(Long id, String idTrain, Set<SillonBo> sillons, Set<PassageBo> computedPassages) {
-        super();
         this.id = id;
         this.idTrain = idTrain;
         this.sillons = sillons;
@@ -78,4 +76,5 @@ public class CourseBo {
     public void setVersion(Long version) {
         this.version = version;
     }
+
 }

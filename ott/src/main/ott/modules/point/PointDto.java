@@ -5,9 +5,9 @@ public class PointDto {
     private Long id;
 
     private String nom;
-    
+
     public PointDto() {
-    	super();
+        super();
     }
 
     public PointDto(Long id, String nom) {
@@ -31,9 +31,9 @@ public class PointDto {
     public void setNom(String nom) {
         this.nom = nom;
     }
-    
+
     public String toString() {
-    	return nom+"("+id+")";
+        return nom + "(" + id + ")";
     }
 
 }

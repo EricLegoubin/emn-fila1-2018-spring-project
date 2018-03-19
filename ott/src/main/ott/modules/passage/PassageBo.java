@@ -1,7 +1,6 @@
 package main.ott.modules.passage;
 
 import main.ott.modules.point.PointBo;
-import main.ott.modules.point.PointDto;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -22,15 +21,13 @@ public class PassageBo {
     @Column(name = "dateTime")
     private LocalDateTime localDateTime;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.REMOVE)
     private PointBo point;
-    
+
     public PassageBo() {
-    	super();
     }
 
     public PassageBo(LocalDateTime localDateTime, PointBo point) {
-    	super();
         this.localDateTime = localDateTime;
         this.point = point;
     }

@@ -15,25 +15,23 @@ public class PointBo {
     @Column(name = "id")
     private Long id;
 
-    @Column(name = "nom", unique=true)
+    @Column(name = "nom", unique = true)
     private String nom;
-    
+
     public PointBo() {
-    	super();
+        super();
     }
-    
+
     public PointBo(String nom) {
-    	super();
-		this.nom = nom;
-	}
+        this.nom = nom;
+    }
 
     public PointBo(Long id, String nom) {
-    	super();
-		this.id = id;
-		this.nom = nom;
-	}
+        this.id = id;
+        this.nom = nom;
+    }
 
-	public Long getId() {
+    public Long getId() {
         return id;
     }
 
@@ -56,9 +54,9 @@ public class PointBo {
     public void setVersion(Long version) {
         this.version = version;
     }
-    
+
     public String toString() {
-    	return nom+"("+id+")";
+        return nom + "(" + id + ")";
     }
 
 }
