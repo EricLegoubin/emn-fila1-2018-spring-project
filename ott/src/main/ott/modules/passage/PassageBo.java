@@ -14,7 +14,7 @@ import java.util.Set;
 @Table(name = "passages")
 @Getter
 @Setter
-@EqualsAndHashCode(of={"id"})
+@EqualsAndHashCode(of={"id", "version"})
 public class PassageBo {
 
     @Id
@@ -32,15 +32,11 @@ public class PassageBo {
     @ManyToOne(cascade = CascadeType.ALL)
     private PointBo point;
 
-    @OneToMany(cascade = CascadeType.ALL)
-    private Set<CourseBo> courses;
-
     public PassageBo() {
     }
 
-    public PassageBo(LocalDateTime localDateTime, PointBo point, Set<CourseBo> courses) {
+    public PassageBo(LocalDateTime localDateTime, PointBo point) {
         this.localDateTime = localDateTime;
         this.point = point;
-        this.courses = courses;
     }
 }

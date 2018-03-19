@@ -13,7 +13,7 @@ import java.util.Set;
 @Table(name = "courses")
 @Getter
 @Setter
-@EqualsAndHashCode(of ={"id"})
+@EqualsAndHashCode(of = {"id"})
 public class CourseBo {
 
     @Version
@@ -21,17 +21,17 @@ public class CourseBo {
     private Long version;
 
     @Id
-    @GeneratedValue(strategy=GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Long id;
 
     @Column(name = "train_id")
     private String idTrain;
 
-    @ManyToMany(fetch = FetchType.LAZY)
+    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private Set<SillonBo> sillons;
 
-    @OneToMany(fetch = FetchType.LAZY)
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private Set<PassageBo> computedPassages;
 
     public CourseBo() {

@@ -17,20 +17,11 @@ import javax.persistence.criteria.Root;
 import java.util.Optional;
 
 @Component
-public class CourseService extends Service<CourseBo, CourseDto> {
+public class CourseService extends Service<CourseBo> {
 
     @Autowired
-    public CourseService(SessionFactory sessionFactory, CourseBoDtoMapper courseBoDtoMapper) {
-        super(CourseBo.class, sessionFactory, courseBoDtoMapper);
+    public CourseService(SessionFactory sessionFactory) {
+        super(CourseBo.class, sessionFactory);
     }
 
-    public boolean checkCourseId(Long id){
-        Optional<CourseDto> courseBo = this.getById(id);
-        if(courseBo != null){
-            return true;
-        }else{
-            return false;
-        }
-
-    }
 }
