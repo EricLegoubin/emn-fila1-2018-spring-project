@@ -31,7 +31,7 @@ public class Receiver {
 //		CourseMapper courseMapper = new CourseMapper();
 //		List<Course> coursesToSimulate = courseMapper.courseDTOsToCourses((List<CourseDTO>) cr.value());
 		List<Course> coursesToSimulate = (List<Course>) cr.value();
-		Simulateur simulateur = new Simulateur(coursesToSimulate)
+		Simulateur simulateur = new Simulateur(coursesToSimulate);
 		GeoApplication.setSimulateur(simulateur);
 		simulateur.startSimulation();
 		latch.countDown();
