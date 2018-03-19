@@ -11,10 +11,10 @@
 	<name>ott</name>
 	<description>Offre de Transport Théorique</description>
 
-	<parent>
+    <parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>2.0.0.RELEASE</version>
+		<version>1.5.10.RELEASE</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 
@@ -80,7 +80,8 @@
     </dependencies>
 
 	<build>
-		<plugins>
+        <sourceDirectory>src</sourceDirectory>
+        <plugins>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
