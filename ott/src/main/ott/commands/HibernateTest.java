@@ -21,15 +21,11 @@ import org.springframework.shell.standard.ShellOption;
 
 @ShellComponent
 public class HibernateTest {
-
+	
+	@Autowired
     private SessionFactory sessionFactory;
+	@Autowired
     private PointService pointService;
-
-    @Autowired
-    public HibernateTest(PointService pointService, SessionFactory sessionFactory) {
-        this.pointService = pointService;
-        this.sessionFactory = sessionFactory;
-    }
 
     @ShellMethod("test")
     public void test(Long id) {
@@ -63,8 +59,6 @@ public class HibernateTest {
 		
 		SillonBo s1 = new SillonBo();
 		SillonBo s2 = new SillonBo();
-		session.save(s1);
-		session.save(s2);
 		
 		Set<PointBo> points1 = new HashSet<>();
 		Set<PointBo> points2 = new HashSet<>();
@@ -95,8 +89,6 @@ public class HibernateTest {
 		
 		CourseBo course1 = new CourseBo();
 		course1.setIdTrain("124578");
-		
-		session.save(course1);
 		
 		Set<PassageBo> passages1 = new HashSet<>();
 		passages1.add(pass1);

@@ -11,7 +11,7 @@ public class PointBo {
     private Long version;
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
     @Column(name = "id")
     private Long id;
 
