@@ -1,17 +1,11 @@
 package main.ott.modules.course;
 
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.Setter;
 import main.ott.modules.passage.PassageDto;
 import main.ott.modules.sillon.SillonDto;
 
 import java.util.List;
 import java.util.Set;
 
-@Getter
-@Setter
-@EqualsAndHashCode(of ={"id"})
 public class CourseDto {
 
     /**
@@ -43,4 +37,35 @@ public class CourseDto {
         this.computedPassages = computedPassages;
     }
 
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getIdTrain() {
+        return idTrain;
+    }
+
+    public void setIdTrain(String idTrain) {
+        this.idTrain = idTrain;
+    }
+
+    public Set<SillonDto> getSillons() {
+        return sillons;
+    }
+
+    public void setSillons(Set<SillonDto> sillons) {
+        this.sillons = sillons;
+    }
+
+    public List<PassageDto> getComputedPassages() {
+        return computedPassages;
+    }
+
+    public void setComputedPassages(List<PassageDto> computedPassages) {
+        this.computedPassages = computedPassages;
+    }
 }

@@ -1,8 +1,5 @@
 package main.ott.modules.course;
 
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.Setter;
 import main.ott.modules.passage.PassageBo;
 import main.ott.modules.sillon.SillonBo;
 
@@ -11,9 +8,6 @@ import java.util.Set;
 
 @Entity(name = "courses")
 @Table(name = "courses")
-@Getter
-@Setter
-@EqualsAndHashCode(of = {"id"})
 public class CourseBo {
 
     @Version
@@ -44,4 +38,43 @@ public class CourseBo {
         this.computedPassages = computedPassages;
     }
 
+    public Long getVersion() {
+        return version;
+    }
+
+    public void setVersion(Long version) {
+        this.version = version;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getIdTrain() {
+        return idTrain;
+    }
+
+    public void setIdTrain(String idTrain) {
+        this.idTrain = idTrain;
+    }
+
+    public Set<SillonBo> getSillons() {
+        return sillons;
+    }
+
+    public void setSillons(Set<SillonBo> sillons) {
+        this.sillons = sillons;
+    }
+
+    public Set<PassageBo> getComputedPassages() {
+        return computedPassages;
+    }
+
+    public void setComputedPassages(Set<PassageBo> computedPassages) {
+        this.computedPassages = computedPassages;
+    }
 }

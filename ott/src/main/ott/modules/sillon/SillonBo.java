@@ -1,8 +1,5 @@
 package main.ott.modules.sillon;
 
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.Setter;
 import main.ott.modules.course.CourseBo;
 import main.ott.modules.point.PointBo;
 
@@ -11,9 +8,6 @@ import java.util.Set;
 
 @Entity(name = "sillons")
 @Table(name = "sillons")
-@Getter
-@Setter
-@EqualsAndHashCode(of = {"id", "version"})
 public class SillonBo {
 
     @Id
@@ -37,4 +31,27 @@ public class SillonBo {
         this.points = points;
     }
 
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public Long getVersion() {
+        return version;
+    }
+
+    public void setVersion(Long version) {
+        this.version = version;
+    }
+
+    public Set<PointBo> getPoints() {
+        return points;
+    }
+
+    public void setPoints(Set<PointBo> points) {
+        this.points = points;
+    }
 }
