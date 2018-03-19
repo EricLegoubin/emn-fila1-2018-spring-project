@@ -8,7 +8,6 @@ public class SillonDto {
 
     private Long id;
 
-    private Long version;
 
     private Set<PointDto> points;
     
@@ -38,11 +37,5 @@ public class SillonDto {
         this.points = points;
     }
 
-    public Long getVersion() {
-        return version;
-    }
 
-    public void setVersion(Long version) {
-        this.version = version;
-    }
 }

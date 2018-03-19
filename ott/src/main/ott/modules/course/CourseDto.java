@@ -16,13 +16,13 @@ public class CourseDto {
 
     private Set<SillonDto> sillons;
 
-    private Set<PassageDto> computedPassages;
+    private List<PassageDto> computedPassages;
     
     public CourseDto() {
     	super();
     }
 
-    public CourseDto(Long id, String idTrain, Set<SillonDto> sillons, Set<PassageDto> computedPassages) {
+    public CourseDto(Long id, String idTrain, Set<SillonDto> sillons, List<PassageDto> computedPassages) {
         super();
         this.id = id;
         this.idTrain = idTrain;
@@ -46,11 +46,11 @@ public class CourseDto {
         this.idTrain = idTrain;
     }
 
-    public Set<PassageDto> getComputedPassages() {
+    public List<PassageDto> getComputedPassages() {
         return computedPassages;
     }
 
-    public void setComputedPassages(Set<PassageDto> computedPassages) {
+    public void setComputedPassages(List<PassageDto> computedPassages) {
         this.computedPassages = computedPassages;
     }
 

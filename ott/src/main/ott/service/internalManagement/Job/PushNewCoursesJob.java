@@ -8,6 +8,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 
@@ -17,24 +18,28 @@ import java.util.List;
 @Component
 public class PushNewCoursesJob {
     private static final Logger log = LoggerFactory.getLogger(PushDailyCousesJob.class);
-    private final String uri = "urlto";
     ObjectMapper mapper = new ObjectMapper();
 
     @Autowired
     private Sender sender;
     //todo when externalmanagement recieve new course, put them in the base then call this
 
-    public void pushCourses(CourseDto courseDto) {
+    /**
+     * Called by externalManagement.CourceSevices
+     */
+    @Scheduled(cron = "0 * * ? * *")//task every 5 min
+    public void pushCourses() {//CourseDto courseDto
+
         log.info("Sending New Course ");
 
-        String message = "";
+        String message = "poop";
         //Send JSON with all courses to other components
-        try {
-            message = mapper.writeValueAsString(courseDto);
-        } catch (JsonProcessingException e) {
-            e.printStackTrace();
-        }
-        sender.send("New Course",message);
+//        try {
+//            message = mapper.writeValueAsString(courseDto);
+//        } catch (JsonProcessingException e) {
+//            e.printStackTrace();
+//        }
+        sender.send("newCourse",message);
 
     }
 }
