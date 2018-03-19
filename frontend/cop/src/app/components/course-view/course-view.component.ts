@@ -4,21 +4,17 @@ import { Observable } from 'rxjs/Observable';
 
 @Component({
   selector: 'app-courses',
-  templateUrl: './courses.component.html',
-  styleUrls: ['./courses.component.css']
+  templateUrl: './course-view.component.html',
+  styleUrls: ['./course-view.component.css']
 })
-export class CoursesComponent implements OnInit {
+export class CourseViewComponent implements OnInit {
 
   courses;
 
   constructor(private coursesServices: CoursesService) { }
 
   ngOnInit() {
-    this.coursesServices.getCourses()
-    .subscribe(data => {
-      console.log(data);
-      this.courses = data;
-    });
+    
   }
 
 }

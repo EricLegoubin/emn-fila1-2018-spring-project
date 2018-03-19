@@ -1,6 +1,5 @@
 package org.emn.fila1.spring.cop.repository;
 
-import org.emn.fila1.spring.cop.model.Course;
 import org.emn.fila1.spring.cop.model.CourseCOP;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
