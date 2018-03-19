@@ -2,7 +2,7 @@ package main.ott.modules.point;
 
 import javax.persistence.*;
 
-@Entity
+@Entity(name = "points")
 @Table(name = "points")
 public class PointBo {
 
@@ -15,12 +15,17 @@ public class PointBo {
     @Column(name = "id")
     private Long id;
 
-    @Column(name = "nom")
+    @Column(name = "nom", unique=true)
     private String nom;
     
     public PointBo() {
     	super();
     }
+    
+    public PointBo(String nom) {
+    	super();
+		this.nom = nom;
+	}
 
     public PointBo(Long id, String nom) {
     	super();

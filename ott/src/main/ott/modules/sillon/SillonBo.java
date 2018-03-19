@@ -6,7 +6,7 @@ import main.ott.modules.point.PointDto;
 import javax.persistence.*;
 import java.util.Set;
 
-@Entity
+@Entity(name = "sillons")
 @Table(name = "sillons")
 public class SillonBo {
 
@@ -15,7 +15,7 @@ public class SillonBo {
     @Column(name = "id")
     private Long id;
 
-    @OneToMany(fetch = FetchType.LAZY)
+    @ManyToMany(fetch = FetchType.LAZY)
     private Set<PointBo> points;
 
     public SillonBo() {
@@ -27,8 +27,8 @@ public class SillonBo {
         this.id = id;
         this.points = poiIds;
     }
-    
-    public Long getId() {
+
+	public Long getId() {
         return id;
     }
 

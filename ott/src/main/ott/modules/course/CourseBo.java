@@ -6,7 +6,7 @@ import main.ott.modules.sillon.SillonBo;
 import javax.persistence.*;
 import java.util.Set;
 
-@Entity
+@Entity(name = "courses")
 @Table(name = "courses")
 public class CourseBo {
 
@@ -21,7 +21,7 @@ public class CourseBo {
     @Column(name = "train_id")
     private String idTrain;
 
-    @OneToMany(fetch = FetchType.LAZY)
+    @ManyToMany(fetch = FetchType.LAZY)
     private Set<SillonBo> sillons;
 
     @OneToMany(fetch = FetchType.LAZY)

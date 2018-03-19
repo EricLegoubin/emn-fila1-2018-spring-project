@@ -6,7 +6,7 @@ import main.ott.modules.point.PointDto;
 import javax.persistence.*;
 import java.time.LocalDateTime;
 
-@Entity
+@Entity(name = "passages")
 @Table(name = "passages")
 public class PassageBo {
 
