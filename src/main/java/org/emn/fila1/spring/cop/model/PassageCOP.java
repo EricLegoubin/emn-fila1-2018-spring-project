@@ -4,6 +4,7 @@ import org.springframework.data.annotation.Id;
 
 import java.io.Serializable;
 import java.sql.Timestamp;
+import java.util.Date;
 
 public class PassageCOP implements Serializable {
 
@@ -14,9 +15,9 @@ public class PassageCOP implements Serializable {
     String id;
     POI pi;
     String idCourse;
-    Timestamp theoricalDate;
-    Timestamp calculatedDate;
-    Timestamp operatorDate;
+    Date theoricalDate;
+    Date calculatedDate;
+    Date operatorDate;
     boolean cancelled;
 
     public PassageCOP() {
@@ -58,27 +59,27 @@ public class PassageCOP implements Serializable {
         this.idCourse = idCourse;
     }
 
-    public Timestamp getTheoricalDate() {
+    public Date getTheoricalDate() {
         return theoricalDate;
     }
 
-    public void setTheoricalDate(Timestamp theoricalDate) {
+    public void setTheoricalDate(Date theoricalDate) {
         this.theoricalDate = theoricalDate;
     }
 
-    public Timestamp getCalculatedDate() {
+    public Date getCalculatedDate() {
         return calculatedDate;
     }
 
-    public void setCalculatedDate(Timestamp calculatedDate) {
+    public void setCalculatedDate(Date calculatedDate) {
         this.calculatedDate = calculatedDate;
     }
 
-    public Timestamp getOperatorDate() {
+    public Date getOperatorDate() {
         return operatorDate;
     }
 
-    public void setOperatorDate(Timestamp operatorDate) {
+    public void setOperatorDate(Date operatorDate) {
         this.operatorDate = operatorDate;
     }
 

@@ -35,12 +35,13 @@ public class GeolocationService {
 
 
             if (passage.getId().equals(p.getId())) {
-                p.setCalculatedDate(passage.getDate());
+                delta = passage.getDate().getTime() - p.getTheoricalDate().getTime();
 
-                if (p.getCalculatedDate().compareTo(p.getTheoricalDate()) > 0 ) {
+                if (delta > 60000 || delta < -60000) {
+                    p.setCalculatedDate(passage.getDate());
                     found = true;
-                    delta = p.getCalculatedDate().getTime() - p.getTheoricalDate().getTime();
                 }
+                else break;
 
             }
 
@@ -51,9 +52,11 @@ public class GeolocationService {
 
         courseRepository.save(course);
 
-        ingService.postCourse(passageToSend);
+        if (found) {
+            ingService.postCourse(passageToSend);
+        }
+
     }
 
 
 }
-A
