@@ -59,12 +59,12 @@ public abstract class Service<T, E> {
         return getById(id, "id");
     }
 
-    public void Create(E dto) {
+    public void create(E dto) {
         T bo = mapper.dto2Bo(dto);
         sessionFactory.getCurrentSession().save(bo);
     }
 
-    public int DeleteAll() {
+    public int deleteAll() {
         String queryString = String.format("DELETE FROM %s", getTableName());
         Query typedQuery = sessionFactory.getCurrentSession().createQuery(queryString);
         return typedQuery.executeUpdate();
