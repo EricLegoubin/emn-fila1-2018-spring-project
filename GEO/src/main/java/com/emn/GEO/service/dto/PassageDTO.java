@@ -5,33 +5,48 @@ import java.security.Timestamp;
 
 public class PassageDTO {
 
-    private Timestamp localDateTime;
-
-    private POIDTO point;
-    
+	private Long POIId;
+	
+	private Timestamp timestamp;
+	    
+	private Long CourseId;
+	
+	
     public PassageDTO() {
     	super();
     }
 
-    public PassageDTO(Timestamp localDateTime, POIDTO point) {
-    	super();
-        this.localDateTime = localDateTime;
-        this.point = point;
-    }
+	public PassageDTO(Long pOIId, Timestamp timestamp, Long courseId) {
+		super();
+		POIId = pOIId;
+		this.timestamp = timestamp;
+		CourseId = courseId;
+	}
 
-    public POIDTO getPoint() {
-        return point;
-    }
+	public Long getPOIId() {
+		return POIId;
+	}
 
-    public void setPoint(POIDTO point) {
-        this.point = point;
-    }
+	public void setPOIId(Long pOIId) {
+		POIId = pOIId;
+	}
 
-    public Timestamp getLocalDateTime() {
-        return localDateTime;
-    }
+	public Timestamp getTimestamp() {
+		return timestamp;
+	}
 
-    public void setLocalDateTime(Timestamp localDateTime) {
-        this.localDateTime = localDateTime;
-    }
+	public void setTimestamp(Timestamp timestamp) {
+		this.timestamp = timestamp;
+	}
+
+
+	public Long getCourseId() {
+		return CourseId;
+	}
+
+
+	public void setCourseId(Long courseId) {
+		CourseId = courseId;
+	}
+
 }
