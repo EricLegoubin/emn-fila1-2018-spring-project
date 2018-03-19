@@ -10,7 +10,7 @@ import java.time.LocalDateTime;
 public class PassageBo {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
     @Column(name = "id")
     private Long id;
 
