@@ -1,5 +1,8 @@
 package main.ott.modules.passage;
 
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.Setter;
 import main.ott.modules.point.PointBo;
 
 import javax.persistence.*;
@@ -7,6 +10,9 @@ import java.time.LocalDateTime;
 
 @Entity(name = "passages")
 @Table(name = "passages")
+@Getter
+@Setter
+@EqualsAndHashCode(of={"id"})
 public class PassageBo {
 
     @Id
@@ -29,38 +35,6 @@ public class PassageBo {
 
     public PassageBo(LocalDateTime localDateTime, PointBo point) {
         this.localDateTime = localDateTime;
-        this.point = point;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public Long getVersion() {
-        return version;
-    }
-
-    public void setVersion(Long version) {
-        this.version = version;
-    }
-
-    public LocalDateTime getLocalDateTime() {
-        return localDateTime;
-    }
-
-    public void setLocalDateTime(LocalDateTime localDateTime) {
-        this.localDateTime = localDateTime;
-    }
-
-    public PointBo getPoint() {
-        return point;
-    }
-
-    public void setPoint(PointBo point) {
         this.point = point;
     }
 }

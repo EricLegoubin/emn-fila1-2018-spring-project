@@ -1,16 +1,28 @@
 package main.ott.modules.passage;
 
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.Setter;
 import main.ott.modules.point.PointDto;
 
 import java.sql.Timestamp;
-import java.time.LocalDateTime;
 
+@Getter
+@Setter
+@EqualsAndHashCode
+/**
+ * Classe qui représente un passage d'un train à un lieu et une heure
+ */
 public class PassageDto {
 
+    /**
+     * L'heure de passage
+     */
     private Timestamp localDateTime;
-
+    /**
+     * Le point où le train passe
+     */
     private PointDto point;
-    
     public PassageDto() {
     	super();
     }
@@ -19,21 +31,5 @@ public class PassageDto {
     	super();
         this.localDateTime = localDateTime;
         this.point = point;
-    }
-
-    public PointDto getPoint() {
-        return point;
-    }
-
-    public void setPoint(PointDto point) {
-        this.point = point;
-    }
-
-    public Timestamp getLocalDateTime() {
-        return localDateTime;
-    }
-
-    public void setLocalDateTime(Timestamp localDateTime) {
-        this.localDateTime = localDateTime;
     }
 }

@@ -1,23 +1,36 @@
 package main.ott.modules.course;
 
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.Setter;
 import main.ott.modules.passage.PassageDto;
 import main.ott.modules.sillon.SillonDto;
 
-import java.time.LocalDateTime;
 import java.util.List;
-import java.util.Map;
 import java.util.Set;
 
+@Getter
+@Setter
+@EqualsAndHashCode(of ={"id"})
 public class CourseDto {
 
+    /**
+     * Id de la course.
+     */
     private Long id;
-
+    /**
+     * Id du train relié à la course.
+     */
     private String idTrain;
-
+    /**
+     * Les sillions de la course
+      */
     private Set<SillonDto> sillons;
-
+    /**
+     * Les passages faits par la course.
+     */
     private List<PassageDto> computedPassages;
-    
+
     public CourseDto() {
     	super();
     }
@@ -29,37 +42,4 @@ public class CourseDto {
         this.sillons = sillons;
         this.computedPassages = computedPassages;
     }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getIdTrain() {
-        return idTrain;
-    }
-
-    public void setIdTrain(String idTrain) {
-        this.idTrain = idTrain;
-    }
-
-    public List<PassageDto> getComputedPassages() {
-        return computedPassages;
-    }
-
-    public void setComputedPassages(List<PassageDto> computedPassages) {
-        this.computedPassages = computedPassages;
-    }
-
-    public Set<SillonDto> getSillons() {
-        return sillons;
-    }
-
-    public void setSillons(Set<SillonDto> sillons) {
-        this.sillons = sillons;
-    }
-
 }
