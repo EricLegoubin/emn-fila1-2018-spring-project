@@ -1,14 +1,14 @@
 package com.emn.GEO.domain;
 
-import java.util.List;
+import java.util.Set;
 
 public class Sillon {
 
 	private Long id;
 	
-	private List<POI> pois;
+	private Set<POI> pois;
 
-	public Sillon(Long id, List<POI> pois) {
+	public Sillon(Long id, Set<POI> pois) {
 		super();
 		this.id = id;
 		this.pois = pois;

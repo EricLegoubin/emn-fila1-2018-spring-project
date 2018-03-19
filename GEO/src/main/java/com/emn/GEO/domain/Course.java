@@ -1,9 +1,9 @@
 package com.emn.GEO.domain;
 
 import java.util.List;
+import java.util.Set;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
-import java.util.concurrent.ScheduledFuture;
 import java.util.concurrent.TimeUnit;
 
 public class Course implements Runnable {
@@ -12,13 +12,13 @@ public class Course implements Runnable {
 
 	private String idTrain;
 
-	private List<Sillon> sillons;
+	private Set<Sillon> sillons;
 
 	private List<Passage> passages;
 
 	private List<Passage> passagesTheoriques;
 
-	public Course(Long id, String idTrain, List<Sillon> sillons, List<Passage> passages,
+	public Course(Long id, String idTrain, Set<Sillon> sillons, List<Passage> passages,
 			List<Passage> passagesTheoriques) {
 		super();
 		this.id = id;
