@@ -1,20 +1,14 @@
 package main.ott.modules.course;
 
+import main.ott.modules.base.Mapper;
 import org.modelmapper.ModelMapper;
 
 import main.ott.modules.course.CourseBo;
 import main.ott.modules.course.CourseDto;
 
-public class CourseBoDtoMapper {
-	
-private static ModelMapper modelMapper = new ModelMapper();
-	
-	public static CourseDto mapToDto(CourseBo p) {
-		return modelMapper.map(p, CourseDto.class);
+public class CourseBoDtoMapper extends Mapper<CourseBo, CourseDto> {
+
+	public CourseBoDtoMapper() {
+		super(CourseBo.class, CourseDto.class);
 	}
-	
-	public static CourseBo mapToBo(CourseDto dto) {
-		return modelMapper.map(dto, CourseBo.class);
-	}
-	
 }
