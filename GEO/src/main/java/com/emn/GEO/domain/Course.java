@@ -1,5 +1,7 @@
 package com.emn.GEO.domain;
-
+import java.sql.Timestamp;
+import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 import java.util.Set;
 import java.util.concurrent.Executors;
@@ -10,7 +12,7 @@ public class Course implements Runnable {
 
 	private Long id;
 
-	private String idTrain;
+	private Long idTrain;
 
 	private Set<Sillon> sillons;
 
@@ -18,13 +20,13 @@ public class Course implements Runnable {
 
 	private List<Passage> passagesTheoriques;
 
-	public Course(Long id, String idTrain, Set<Sillon> sillons, List<Passage> passages,
+	public Course(Long id, Long idTrain, Set<Sillon> sillons,
 			List<Passage> passagesTheoriques) {
 		super();
 		this.id = id;
 		this.idTrain = idTrain;
 		this.sillons = sillons;
-		this.passages = passages;
+		this.passages = passagesTheoriques;
 		this.passagesTheoriques = passagesTheoriques;
 	}
 
@@ -32,7 +34,7 @@ public class Course implements Runnable {
 	public void run() {
 		final ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(passagesTheoriques.size());
 		passagesTheoriques.forEach((passage) -> {
-			long delay = passage.getTime().getTimestamp().getTime() - System.currentTimeMillis();
+			long delay = passage.getTime().getTime() - System.currentTimeMillis();
 			if (delay >= 0) {
 				scheduler.schedule(passage, delay, TimeUnit.MILLISECONDS);
 			}
@@ -43,16 +45,48 @@ public class Course implements Runnable {
 		return id;
 	}
 	
-//	public void addPerturbationOnPassage(Long poiId)
-//	{
-//		for(Passage passage : passages)
-//		{
-//			if(passage.getPoi().getId() == poiId)
-//			{
-//				
-//				break;
-//			}
-//		}
-//	}
+        public void addPerturbationOnPassage(Long poiId, int minutes){
+           boolean check = false;
+            for(Passage p : passages){
+                if(p.getPoi().getId().equals(poiId)){
+                    check = true;
+                }
+                if(check){
+                    Calendar cal = Calendar.getInstance();
+                    cal.setTimeInMillis(p.getTime().getTime());
+                    cal.add(Calendar.MINUTE, minutes);
+                    p.setTime(new Timestamp(cal.getTime().getTime()));
+                }
+            } 
+        }
+        
+        public void addCancelationOnPassage(Long poiId){
+            List<Passage> liste = new ArrayList<>();
+            for(Passage p : passages){
+                if(p.getPoi().getId().equals(poiId)){
+                    break;
+                }
+                liste.add(p);
+            }
+            passages = liste;
+        }
+
+    public Long getIdTrain() {
+        return idTrain;
+    }
+
+    public Set<Sillon> getSillons() {
+        return sillons;
+    }
+
+    public List<Passage> getPassages() {
+        return passages;
+    }
+
+    public List<Passage> getPassagesTheoriques() {
+        return passagesTheoriques;
+    }
+        
+        
 
 }

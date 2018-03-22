@@ -1,6 +1,6 @@
 package com.emn.GEO.domain;
 
-import java.security.Timestamp;
+import java.sql.Timestamp;
 
 import com.emn.GEO.kafka.Sender;
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -8,44 +8,47 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 public class Passage implements Runnable {
 
-	private Course course;
+    private Course course;
 
-	private POI poi;
+    private POI poi;
 
-	private Timestamp time;
+    private Timestamp time;
 
-	public Passage(Course course, POI poi, Timestamp time) {
-		super();
-		this.course = course;
-		this.poi = poi;
-		this.time = time;
-	}
+    public Passage(Course course, POI poi, Timestamp time) {
+        super();
+        this.course = course;
+        this.poi = poi;
+        this.time = time;
+    }
 
-	public void run() {
-		ObjectMapper mapper = new ObjectMapper();
-		try {
-			// TODO convert to DTO
-			Sender.sender.send("passage", mapper.writeValueAsString(this));
-		} catch (JsonProcessingException e) {
-			e.printStackTrace();
-		}
-	}
+    public void run() {
+        ObjectMapper mapper = new ObjectMapper();
+        try {
+            // TODO convert to DTO
+            Sender.sender.send("passage", mapper.writeValueAsString(this));
+        } catch (JsonProcessingException e) {
+            e.printStackTrace();
+        }
+    }
 
-	public Timestamp getTime() {
-		return time;
-	}
+    public Timestamp getTime() {
+        return time;
+    }
 
-	public POI getPoi() {
-		return poi;
-	}
+    public POI getPoi() {
+        return poi;
+    }
 
-	public Course getCourse() {
-		return course;
-	}
+    public Course getCourse() {
+        return course;
+    }
 
-	public void setCourse(Course course) {
-		this.course = course;
-	}
+    public void setCourse(Course course) {
+        this.course = course;
+    }
 
-	
+    public void setTime(Timestamp time) {
+        this.time = time;
+    }
+
 }
