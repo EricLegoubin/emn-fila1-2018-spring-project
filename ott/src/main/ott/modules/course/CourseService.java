@@ -14,6 +14,8 @@ import javax.persistence.NoResultException;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
+import java.sql.Timestamp;
+import java.util.List;
 import java.util.Optional;
 
 @Component
@@ -23,5 +25,6 @@ public class CourseService extends Service<CourseBo> {
     public CourseService(SessionFactory sessionFactory) {
         super(CourseBo.class, sessionFactory);
     }
+
 
 }

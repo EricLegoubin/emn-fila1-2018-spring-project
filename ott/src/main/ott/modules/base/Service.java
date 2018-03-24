@@ -1,5 +1,7 @@
 package main.ott.modules.base;
 
+import main.ott.modules.course.CourseBo;
+import main.ott.modules.course.CourseDto;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.metamodel.spi.MetamodelImplementor;
@@ -11,6 +13,8 @@ import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 import javax.transaction.Transactional;
+import java.sql.Timestamp;
+import java.util.List;
 import java.util.Optional;
 
 @Transactional
@@ -63,6 +67,12 @@ public abstract class Service<T> {
         String queryString = String.format("DELETE FROM %s", getTableName());
         Query typedQuery = sessionFactory.getCurrentSession().createQuery(queryString);
         return typedQuery.executeUpdate();
+    }
+
+    public List<CourseBo> getCourseDtoStartingAfterDate(Timestamp timestamp){
+        String queryString = String.format("SELECT * FROM courses c WHERE c.id IN (SELECT cp.courses_id FROM courses_passages cp WHERE cp.computedPassages_id IN (SELECT p.id FROM passages p WHERE p.dateTime >= %s )" , timestamp.toString());
+        Query typedQuery = sessionFactory.getCurrentSession().createQuery(queryString);
+        return typedQuery.getResultList();
     }
 
 }
