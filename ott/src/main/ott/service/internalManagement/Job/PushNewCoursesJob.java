@@ -22,7 +22,8 @@ public class PushNewCoursesJob {
 
     @Autowired
     private Sender sender;
-    //todo when externalmanagement recieve new course, put them in the base then call this
+    //todo when externalmanagement recieve new course, put them in the base then call this,
+    //todo externalmanagment called this class ok !
 
     /**
      * Called by externalManagement.CourceSevices
@@ -41,5 +42,17 @@ public class PushNewCoursesJob {
 //        }
         sender.send("newCourse",message);
 
+    }
+
+    /**
+     * Called by externalManagement.CourceSevices when a course has been updated, have to check if the course has been given to others services to alert them, else, do normal treatments.
+     */
+    public void pushCoursesForUpdatedCourse() {
+    }
+
+    /**
+     * Called by externalManagement.CourceSevices when a totally new course comes in the OTT service (like a new POST from the prospect service).
+     */
+    public void pushCoursesForNewCourse() {
     }
 }

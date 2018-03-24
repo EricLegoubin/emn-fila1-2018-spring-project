@@ -16,8 +16,8 @@ public class CourseController {
     private CourseServices courseServices;
     private CourseService courseService;
 
-    // POST /courses/{id}
-    @RequestMapping(method= RequestMethod.POST, path="/addCourses")
+    // POST /addCourses
+    @RequestMapping(method= RequestMethod.POST, path="/addcourses")
     public void updateCourse(@RequestBody CourseDto[] courses) {
 
         for(int i=0; i < courses.length ;i++){
@@ -30,8 +30,18 @@ public class CourseController {
         }
     }
 
+    //Get greetings from server
+    @RequestMapping(method= RequestMethod.GET, path="/greetings")
+    public String getGreetings(){
+        return "Greetings from OTT";
+    }
+
     private boolean exists(Long id) {
-        return courseService.checkCourseId(id);
+        if(courseService.getById(id) != null){
+            return false;
+        }else{
+            return true;
+        }
     }
 
 }
