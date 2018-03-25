@@ -25,7 +25,7 @@ public class Receiver {
 		return latch;
 	}
 	
-	@KafkaListener(topics="mocks")
+	@KafkaListener(topics="dailyCourse")
 	public void receiveMocks(ConsumerRecord<?, ?> cr) {
 //		Would be used if mocks were transfered as dto, but we need ALL the information here.
 //		CourseMapper courseMapper = new CourseMapper();
