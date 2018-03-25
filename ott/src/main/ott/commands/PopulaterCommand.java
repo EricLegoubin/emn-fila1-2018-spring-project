@@ -12,8 +12,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.shell.standard.ShellComponent;
 import org.springframework.shell.standard.ShellMethod;
 
+import java.awt.*;
 import java.time.LocalDateTime;
 import java.util.*;
+import java.util.List;
 
 @ShellComponent
 public class PopulaterCommand {
@@ -27,6 +29,11 @@ public class PopulaterCommand {
         points.put("paris", new PointBo("Paris", true));
         points.put("p1", new PointBo("p1", false));
         points.put("p2", new PointBo("p2", false));
+        points.put("Nantes", new PointBo("Nantes", true));
+        points.put("Oudon", new PointBo("Oudon", false));
+        points.put("Ancenis", new PointBo("Ancenis", false));
+        points.put("Chartres", new PointBo("Chartres", false));
+        points.put("Paris", new PointBo("Paris", true));
     }
 
     static {
@@ -36,6 +43,17 @@ public class PopulaterCommand {
         ))));
         sillons.put("s2", new SillonBo(new HashSet<PointBo>(Collections.singletonList(points.get("paris")))));
         sillons.put("s3", new SillonBo(new HashSet<PointBo>(Collections.singletonList(points.get("p1")))));
+        HashSet<PointBo> s4 = new HashSet<>();
+        s4.add(points.get("Nantes"));
+        s4.add(points.get("Oudon"));
+        s4.add(points.get("Ancenis"));
+        sillons.put("s4", new SillonBo(s4));
+        HashSet<PointBo> s5 = new HashSet<>();
+        s5.add(points.get("Ancenis"));
+        s5.add(points.get("Chartres"));
+        s5.add(points.get("Paris"));
+        sillons.put("s5", new SillonBo(s5));
+
     }
 
     static {
@@ -53,6 +71,21 @@ public class PopulaterCommand {
                 sillons.get("s2")
         )));
         courses.add(c1);
+
+        CourseBo c2 = new CourseBo();
+        c2.setIdTrain("train_c2");
+        c2.setComputedPassages(new HashSet<>(Arrays.asList(
+                new PassageBo(now, points.get("Nantes")),
+                new PassageBo(now, points.get("Oudon")),
+                new PassageBo(now, points.get("Ancenis")),
+                new PassageBo(now, points.get("Chartres")),
+                new PassageBo(now, points.get("Paris"))
+        )));
+        c2.setSillons(new HashSet<>(Arrays.asList(
+                sillons.get("s4"),
+                sillons.get("s5")
+        )));
+        courses.add(c2);
     }
 
     private CourseService courseService;
