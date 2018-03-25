@@ -1,0 +1,19 @@
+html, body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Roboto', 'Ubuntu', 'Arial',serif;
+    font-size: 1.60vw;
+    background: rgb(30, 30, 30);
+}
+
+#container {
+    display: none;
+}
+
+#main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    height: 90vh;
+}

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <title th:if="${type == 'departs'}" th:text="'Départs de ' + ${gare}"></title>
+    <title th:if="${type == 'arrivees'}" th:text="'Arrivées de ' + ${gare}"></title>
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet"/>
+    <link rel="stylesheet" type="text/css" href="../static/css/departure-board.css"
+          th:href="@{/css/departure-board.css}"/>
+    <link rel="stylesheet" type="text/css" href="../static/css/styleDeparture.css"
+          th:href="@{/css/styleDeparture.css}"/>
+    <script src="../static/js/jquery-3.3.1.min.js" th:src="@{/js/jquery-3.3.1.min.js}"></script>
+    <script src="../static/js/jquery.marquee.min.js" th:src="@{/js/jquery.marquee.min.js}"></script>
+    <script src="../static/js/departure-board.js" th:src="@{/js/departure-board.js}"></script>
+    <script src="../static/js/testDeparture.js" th:src="@{/js/testDeparture.js}"></script>
+</head>
+<body>
+
+<div class="content" th:fragment="list" id="container">
+    <div th:each="course : ${courses}" class="oui">
+        <span class="row">
+            <span class="numTrain" th:text="${course.numTrain}"></span>
+            <span class="heureDepart" th:if="${type == 'departs'}" th:text="${course.heureDepart}"></span>
+            <span class="heureDepart" th:if="${type == 'arrivees'}" th:text="${course.heureArrivee}"></span>
+            <span class="gareArrive" th:if="${type == 'departs'}" th:text="${course.gareArrivee}"></span>
+            <span class="gareArrive" th:if="${type == 'arrivees'}" th:text="${course.gareDepart}"></span>
+            <span class="retard" th:if="${type == 'arrivees'}" th:text="${course.getArriveeRetardMessage()}"></span>
+            <span class="retard" th:if="${type == 'departs'}" th:text="${course.getDepartRetardMessage()}"></span>
+        </span>
+    </div>
+</div>
+
+<div id="main">
+    <div id="test"></div>
+</div>
+<div>
+    <button id="ajout"> AJOUT LIGNE</button>
+    <button id="retard"> AJOUT RETARD</button>
+</div>
+
+</body>
+</html>

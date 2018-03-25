@@ -101,15 +101,6 @@ public class CourseService {
 	// courseRepository.delete(id);
 	// }
 
-	public void duplicate() {
-		Course course = courseRepository.findAll().get(0);
-		courseRepository.findAll().add(course);
-	}
-
-	public void addRetardDepart() {
-		courseRepository.findAll().get(0).setRetardDepart(10);
-	}
-
 	public int countEntries() {
 		return courseRepository.countEntries();
 	}

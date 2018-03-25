@@ -4,7 +4,7 @@
     <title th:if="${type == 'departs'}" th:text="'Départs de ' + ${gare}" ></title>
     <title th:if="${type == 'arrivees'}" th:text="'Arrivées de ' + ${gare}"></title>
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet" />
-    <link rel="stylesheet" type="text/css" href="../static/css/style.css" th:href="@{/css/style.css}" />
+    <link rel="stylesheet" type="text/css" href="../static/css/styleCourses.css" th:href="@{/css/styleCourses.css}" />
     <script src="../static/js/jquery-3.3.1.min.js" th:src="@{/js/jquery-3.3.1.min.js}"></script>
     <script src="../static/js/jquery.marquee.min.js" th:src="@{/js/jquery.marquee.min.js}"></script>
     <script src="../static/js/clock.js" th:src="@{/js/clock.js}"></script>
@@ -42,11 +42,11 @@
 <span class="departArrivee arrivee" th:if="${type == 'arrivees'}">arrivées</span>
 
 <div id="footer" th:classappend="${type == 'departs' ? 'departs' : 'arrivees'}">
-    <!--<div class='marquee'>-->
-        <!--Clic rabot pas problem oui ?<span class="space"></span>-->
-        <!--Nous nous excusons d'avance pour les retards éventuels.<span class="space"></span>-->
-        <!--Manger 5 fruits et 5 légumes par jour.<span class="space"></span>-->
-    <!--</div>-->
+    <div class='marquee'>
+        Clic rabot pas problem oui ?<span class="space"></span>
+        Nous nous excusons d'avance pour les retards éventuels.<span class="space"></span>
+        Manger 5 fruits et 5 légumes par jour.<span class="space"></span>
+    </div>
     <button id="ajout"> AJOUT LIGNE </button>
     <button id="retard"> AJOUT RETARD </button>
     <div id="clock">

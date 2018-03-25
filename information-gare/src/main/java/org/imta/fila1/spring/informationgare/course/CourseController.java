@@ -8,6 +8,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.util.Optional;
+
 @RestController
 public class CourseController {
 
@@ -15,13 +17,21 @@ public class CourseController {
     private CourseServiceStub courseService;
 
     @RequestMapping("/departs/{gare}")
-    public ModelAndView getDeparts(@PathVariable String gare) {
-        return getCourse("departs", gare, "coursesView");
+    public ModelAndView getDeparts(@PathVariable String gare, @RequestParam Optional<String> salt) {
+        if(salt.isPresent()){
+            return getCourse("departs", gare, "departureView");
+        } else {
+            return getCourse("departs", gare, "coursesView");
+        }
     }
 
     @RequestMapping("/arrivees/{gare}")
-    public ModelAndView getArrivees(@PathVariable String gare) {
-        return getCourse("arrivees", gare, "coursesView");
+    public ModelAndView getArrivees(@PathVariable String gare, @RequestParam Optional<String> salt) {
+        if(salt.isPresent()){
+            return getCourse("arrivees", gare, "departureView");
+        } else {
+            return getCourse("arrivees", gare, "coursesView");
+        }
     }
 
     public ModelAndView getCourse(String aType, String aGare, String template) {
@@ -45,20 +55,16 @@ public class CourseController {
     }
 
     @RequestMapping(path = "testAddRetard")
-    public void testAddRetard() {
-        courseService.addRetardDepart();
+    public void testAddRetard(@RequestParam("type") String type) {
+        courseService.addRetard(type);
     }
 
     @RequestMapping(value = "/update")
-    public ModelAndView someMethod(@RequestParam("type") String type, @RequestParam("gare") String gare) {
-        //System.out.println("/" + type + "/" + gare);
-
-        //return new ModelAndView("coursesView :: resultsList");
-
-        //model.addAttribute("courses",courseService.getDeparts(courseService.getActualCity()));
-        //return "redirect:/" + courseService.getActualType() + "/" + courseService.getActualCity();
-        //        return "redirect:/departs/cholet";
-        return getCourse(type, gare, "coursesView :: resultsList");
-        //return "coursesView :: resultsList";
+    public ModelAndView someMethod(@RequestParam("type") String type, @RequestParam("gare") String gare, @RequestParam String style) {
+        if(style.equals("old")){
+            return getCourse(type, gare, "departureView :: list");
+        } else {
+            return getCourse(type, gare, "coursesView :: resultsList");
+        }
     }
 }
