@@ -4,6 +4,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import main.ott.kafka.Sender;
 import main.ott.modules.course.CourseBo;
+import main.ott.modules.course.CourseBoDtoMapper;
 import main.ott.modules.course.CourseDto;
 import main.ott.modules.course.CourseService;
 import org.slf4j.Logger;
@@ -27,7 +28,11 @@ public class PushDailyCousesJob {
 
     private static final Logger log = LoggerFactory.getLogger(PushDailyCousesJob.class);
 
-    ObjectMapper mapper = new ObjectMapper();
+
+    ObjectMapper mapperJson = new ObjectMapper();
+
+    @Autowired
+    CourseBoDtoMapper mapperCourse;
 
     @Autowired
     private Sender sender;
@@ -35,16 +40,12 @@ public class PushDailyCousesJob {
     @Scheduled(cron = "0 0 1 * * ?")//task scheduled at 1 am
     public void pushCourses() {
         log.info("Sending Today's Courses ");
-        RestTemplate restTemplate = new RestTemplate();
-
-
-        //TODO call DB requete: toutes les courses ou date de départ aujourdui
-        //Todo call Mapper
-        List<CourseDto> courses = new ArrayList<>();
+        List<CourseBo> listCourseBo = getTodaysCourses();
+        List<CourseDto> courses = mapperCourse.listBo2Dto(listCourseBo);
         String message = "";
         //Send JSON with all courses to other components
         try {
-             message = mapper.writeValueAsString(courses);
+             message = mapperJson.writeValueAsString(courses);
         } catch (JsonProcessingException e) {
             e.printStackTrace();
         }
@@ -58,17 +59,11 @@ public class PushDailyCousesJob {
     }
 
     public List<CourseBo> getTodaysCourses(){
-        long timeStamp = System.currentTimeMillis() - 86400000; //milliseconds in a day
-        return courseService.getCourseDtoStartingAfterDate(new Timestamp(timeStamp));
+        long now = System.currentTimeMillis(); //milliseconds in a day
+        long tomorrow = System.currentTimeMillis()  + 86400000 ; //milliseconds in a day
+        return courseService.getCourseDtoStartingBetweenDates(new Timestamp(now),new Timestamp(tomorrow));
     }
 
 
 
-
-    @Scheduled(cron = "* * * ? * *")//task scheduled every secon just to see
-    public void cronTest() { 
-    	/*
-    	System.out.println("Test");
-		*/
-    }
 }

@@ -69,8 +69,21 @@ public abstract class Service<T> {
         return typedQuery.executeUpdate();
     }
 
+
     public List<CourseBo> getCourseDtoStartingAfterDate(Timestamp timestamp){
         String queryString = String.format("SELECT * FROM courses c WHERE c.id IN (SELECT cp.courses_id FROM courses_passages cp WHERE cp.computedPassages_id IN (SELECT p.id FROM passages p WHERE p.dateTime >= %s )" , timestamp.toString());
+        Query typedQuery = sessionFactory.getCurrentSession().createQuery(queryString);
+        return typedQuery.getResultList();
+    }
+
+    /**
+     * Get full objets for all courses that start between two dates
+     * @param debut
+     * @param fin
+     * @return
+     */
+    public List<CourseBo> getCourseDtoStartingBetweenDates(Timestamp debut,Timestamp fin){
+        String queryString = String.format("SELECT * FROM courses c WHERE c.id IN (SELECT cp.courses_id FROM courses_passages cp WHERE cp.computedPassages_id IN (SELECT p.id FROM passages p WHERE p.dateTime > %s  AND p.dateTime >= %s)" , debut.toString(),fin.toString());
         Query typedQuery = sessionFactory.getCurrentSession().createQuery(queryString);
         return typedQuery.getResultList();
     }

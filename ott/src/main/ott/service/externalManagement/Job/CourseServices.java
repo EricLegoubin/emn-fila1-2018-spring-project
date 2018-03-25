@@ -14,13 +14,13 @@ public class CourseServices {
 
     public void addCourse(CourseDto course) {
         Session session = sessionFactory.getCurrentSession();
-        pushNewCoursesJob.pushCoursesForNewCourse();
+        pushNewCoursesJob.pushCoursesForNewCourse(course);
         session.save(course);
     }
 
     public void updateCourse(CourseDto course) {
         Session session = sessionFactory.getCurrentSession();
-        pushNewCoursesJob.pushCoursesForUpdatedCourse();
+        pushNewCoursesJob.pushCoursesForUpdatedCourse(course);
         session.save(course);
     }
 }
