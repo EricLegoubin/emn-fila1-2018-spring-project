@@ -15,6 +15,7 @@ public class Sender {
 	private KafkaTemplate<String, String> template;
 	
 	public void send(String topic, String payload) {
+		System.out.println("sending " + payload + " on " + topic);
 		template.send(topic, payload);
 	}
 }

@@ -30,6 +30,7 @@ public class Receiver {
 //		Would be used if mocks were transfered as dto, but we need ALL the information here.
 //		CourseMapper courseMapper = new CourseMapper();
 //		List<Course> coursesToSimulate = courseMapper.courseDTOsToCourses((List<CourseDTO>) cr.value());
+		System.out.println("Received mocks : " + cr.value().toString());
 		List<Course> coursesToSimulate = (List<Course>) cr.value();
 		Simulateur simulateur = new Simulateur(coursesToSimulate);
 		GeoApplication.setSimulateur(simulateur);
@@ -39,6 +40,7 @@ public class Receiver {
         
         @KafkaListener(topics="newCourse")
         public void receiveCourse(ConsumerRecord<?, ?> cr){
+        	System.out.println("Received new course : " + cr.value().toString());
             Course course = (Course) cr.value();
             GeoApplication.getSimulateur().addCourse(course);
             new Thread(course).start();

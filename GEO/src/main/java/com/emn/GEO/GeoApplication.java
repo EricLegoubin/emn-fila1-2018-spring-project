@@ -3,6 +3,7 @@ package com.emn.GEO;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+import com.emn.GEO.kafka.Sender;
 import com.emn.GEO.simulateur.Simulateur;
 
 @SpringBootApplication
