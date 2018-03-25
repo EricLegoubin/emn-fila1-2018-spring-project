@@ -5,6 +5,7 @@ import java.util.Map;
 
 import com.emn.GEO.domain.Course;
 import com.emn.GEO.domain.Passage;
+import java.util.Random;
 
 public class Simulateur{
 		
@@ -25,10 +26,25 @@ public class Simulateur{
 	}
 		
 	public void startSimulation() {
+            for(int i = 0; i < coursesToSimulate.size(); i++){
+                if(i == 2){
+                    Course c = coursesToSimulate.get(i);
+                    c.addCancelationOnPassage(c.getPassages().get(2).getPoi().getId());
+                }
+                if(i%3 == 0){
+                    Course c = coursesToSimulate.get(i);
+                    int time = new Random().nextInt(59) + 1;
+                    int poi = new Random().nextInt(c.getPassages().size());
+                    c.addPerturbationOnPassage(c.getPassages().get(poi).getPoi().getId(), time);
+                }
+            }
 		this.coursesToSimulate.forEach((course)-> {
-			//TODO add perturbation simulation
-			course.run();
+                        new Thread(course).start();
 		});
 	}
+        
+        public void addCourse(Course c){
+            coursesToSimulate.add(c);
+        }
 	
 }

@@ -34,7 +34,7 @@ public class Course implements Runnable {
 	public void run() {
 		final ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(passagesTheoriques.size());
 		passagesTheoriques.forEach((passage) -> {
-			long delay = passage.getTime().getTime() - System.currentTimeMillis();
+			long delay = (passage.getTime().getTime() - System.currentTimeMillis())/100;
 			if (delay >= 0) {
 				scheduler.schedule(passage, delay, TimeUnit.MILLISECONDS);
 			}

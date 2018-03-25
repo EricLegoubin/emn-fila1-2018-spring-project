@@ -36,4 +36,11 @@ public class Receiver {
 		simulateur.startSimulation();
 		latch.countDown();
 	}
+        
+        @KafkaListener(topics="newCourse")
+        public void receiveCourse(ConsumerRecord<?, ?> cr){
+            Course course = (Course) cr.value();
+            GeoApplication.getSimulateur().addCourse(course);
+            new Thread(course).start();
+        }
 }
