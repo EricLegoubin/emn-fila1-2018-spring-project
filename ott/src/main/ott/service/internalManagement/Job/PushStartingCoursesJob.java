@@ -35,14 +35,17 @@ public class PushStartingCoursesJob {
     @Autowired
     private Sender sender;
 
-    @Scheduled(cron = "0 */5 * ? * *")//task every 5 min
+    g@Scheduled(cron = "0 */5 * ? * *")//task every 5 min
         public void pushCourses() {
         log.info("Sending Starting Courses ");
 
+        List<CourseDto> courses = MockBAse.getCourses();
         List<CourseBo> listCourseBo = getTodaysCourses();
-        System.out.println(listCourseBo.toString());
-        List<CourseDto> courses = mapperCourse.listBo2Dto(listCourseBo);
-        System.out.println(courses.toString());
+        if (!listCourseBo.isEmpty()){
+
+            courses = mapperCourse.listBo2Dto(listCourseBo);
+
+        }
         String message = "";
         //Send JSON with all courses to other components
         try {
@@ -50,7 +53,9 @@ public class PushStartingCoursesJob {
         } catch (JsonProcessingException e) {
             e.printStackTrace();
         }
+        log.info(courses.size()+ "courses sent");
         sender.send("startingCourses",message);
+
 
     }
 
