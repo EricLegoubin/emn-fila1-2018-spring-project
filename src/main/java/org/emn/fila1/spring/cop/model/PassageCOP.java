@@ -13,7 +13,7 @@ public class PassageCOP implements Serializable {
 
     @Id
     String id;
-    POI pi;
+    POI poi;
     String idCourse;
     Date theoricalDate;
     Date calculatedDate;
@@ -26,7 +26,7 @@ public class PassageCOP implements Serializable {
 
     public PassageCOP(Passage passage) {
         this.id = passage.getId();
-        this.pi = passage.getPoi();
+        this.poi = passage.getPoi();
         this.idCourse = passage.getIdCourse();
         this.theoricalDate = passage.getDate();
         this.calculatedDate = this.theoricalDate;
@@ -43,12 +43,12 @@ public class PassageCOP implements Serializable {
         this.id = id;
     }
 
-    public POI getPi() {
-        return pi;
+    public POI getPoi() {
+        return poi;
     }
 
-    public void setPi(POI pi) {
-        this.pi = pi;
+    public void setPoi(POI poi) {
+        this.poi = poi;
     }
 
     public String getIdCourse() {

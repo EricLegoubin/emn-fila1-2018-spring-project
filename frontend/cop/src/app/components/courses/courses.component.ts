@@ -10,15 +10,26 @@ import { Observable } from 'rxjs/Observable';
 export class CoursesComponent implements OnInit {
 
   courses;
+  delays;
+  retard;
 
   constructor(private coursesServices: CoursesService) { }
 
   ngOnInit() {
     this.coursesServices.getCourses()
     .subscribe(data => {
-      console.log(data);
       this.courses = data;
+      this.calculatedDelay();
     });
+  }
+
+  calculatedDelay() {
+    this.delays = new Array();
+    this.courses.forEach(course => {
+        this.retard = new Date(course.passages[course.passages.length - 1].theoricalDate - course.passages[course.passages.length - 1].calculatedDate).getTime();
+        this.delays.push(this.retard / (1000*60));
+    });
+    
   }
 
 }

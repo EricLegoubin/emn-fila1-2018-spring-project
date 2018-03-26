@@ -1,3 +1,16 @@
-<div *ngFor="let course of courses">
-  <p>{{ course | json }}</p>
+<div *ngFor="let course of courses;index as i" class="d-flex justify-content-center">
+    <div class="list-group col-lg-8 col-12">
+        <button [routerLink]="['/course', course.id]" type="button" class="list-group-item list-group-item-action">
+            <div>
+                <h3>
+                        {{ course.id }}
+                </h3> 
+                Train {{ course.numTrain }} à destination de {{ course.passages[course.passages.length-1].poi.nom }}
+                <span class="float-right" *ngIf="course.passages[course.passages.length - 1].theoricalDate !== course.passages[course.passages.length - 1].calculatedDate">
+                    + {{delays[i]}} minute(s)
+                </span>
+            </div> 
+
+        </button>
+    </div>
 </div>
