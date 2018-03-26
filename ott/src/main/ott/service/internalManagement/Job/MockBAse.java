@@ -88,5 +88,23 @@ public class MockBAse {
                 sillons.get("S5")
         )));
         courses.add(c2);
+
+        for (int i = 2; i < 10 ; i++) {
+            now = new Timestamp(System.currentTimeMillis()+600000*i);
+            CourseDto temp = new CourseDto();
+            c2.setIdTrain("TrainC"+i);
+            c2.setComputedPassages(new ArrayList<>(Arrays.asList(
+                    new PassageDto(now, points.get("Nantes")),
+                    new PassageDto(now, points.get("Oudon")),
+                    new PassageDto(now, points.get("Ancenis")),
+                    new PassageDto(now, points.get("Chartres")),
+                    new PassageDto(now, points.get("Paris"))
+            )));
+            c2.setSillons(new HashSet<>(Arrays.asList(
+                    sillons.get("S4"),
+                    sillons.get("S5")
+            )));
+            courses.add(temp);
+        }
     }
 }

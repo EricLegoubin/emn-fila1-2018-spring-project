@@ -41,11 +41,9 @@ public class PushStartingCoursesJob {
 
         List<CourseDto> courses = MockBAse.getCourses();
         List<CourseBo> listCourseBo = getTodaysCourses();
-        if (!listCourseBo.isEmpty()){
 
             courses = mapperCourse.listBo2Dto(listCourseBo);
 
-        }
         String message = "";
         //Send JSON with all courses to other components
         try {

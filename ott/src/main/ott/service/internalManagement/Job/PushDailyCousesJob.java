@@ -45,9 +45,9 @@ public class PushDailyCousesJob {
         String message = "";
         //Send JSON with all courses to other components
 
-        if (!courses.isEmpty()){
+
             courses = MockBAse.getCourses();
-        }
+
         try {
              message = mapperJson.writeValueAsString(courses);
         } catch (JsonProcessingException e) {

@@ -8,9 +8,16 @@ import org.springframework.shell.standard.ShellMethod;
 public class CommandLinePusher {
     @Autowired
     private PushDailyCousesJob pushDailyCousesJob;
+    @Autowired
+    private PushStartingCoursesJob pushStartingCoursesJob;
 
     @ShellMethod("Force le push daily")
     public void pushdaily() {
         pushDailyCousesJob.pushCourses();
+    }
+
+    @ShellMethod("Force le starting daily")
+    public void pushstarting() {
+        pushStartingCoursesJob.pushCourses();
     }
 }
