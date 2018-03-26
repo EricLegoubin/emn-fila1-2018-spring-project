@@ -23,8 +23,8 @@ public abstract class Service<T> {
         this.sessionFactory = sessionFactory;
     }
 
-    protected Optional getSingleResult(CriteriaQuery<T> criteriaQuery) {
-        Query query = sessionFactory.getCurrentSession().createQuery(criteriaQuery);
+    protected Optional<T> getSingleResult(CriteriaQuery<T> criteriaQuery) {
+        Query<T> query = sessionFactory.getCurrentSession().createQuery(criteriaQuery);
         try {
             return Optional.of(query.getSingleResult());
         } catch (NoResultException noResultException) {
@@ -32,7 +32,7 @@ public abstract class Service<T> {
         }
     }
 
-    public Optional getById(Long id, String idColumn) {
+    public Optional<T> getById(Long id, String idColumn) {
         Session session = sessionFactory.getCurrentSession();
 
         CriteriaBuilder criteriaBuilder = session.getCriteriaBuilder();
@@ -44,7 +44,7 @@ public abstract class Service<T> {
         return getSingleResult(criteriaQuery);
     }
 
-    public Optional getById(Long id) {
+    public Optional<T> getById(Long id) {
         return getById(id, "id");
     }
 
@@ -60,7 +60,7 @@ public abstract class Service<T> {
         Root<T> root = criteriaQuery.from(boClass);
         criteriaQuery.select(root);
 
-        Query query = session.createQuery(criteriaQuery);
+        Query<T> query = session.createQuery(criteriaQuery);
         return query.getResultList();
     }
 
@@ -68,8 +68,8 @@ public abstract class Service<T> {
         Session session = sessionFactory.getCurrentSession();
         session.beginTransaction();
 
-        List instances = getAll();
-        for (Object instance : instances) {
+        List<T> instances = getAll();
+        for (T instance : instances) {
             session.delete(instance);
         }
 
