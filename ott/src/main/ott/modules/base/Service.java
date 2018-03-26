@@ -1,10 +1,7 @@
 package main.ott.modules.base;
 
-import main.ott.modules.course.CourseBo;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.hibernate.metamodel.spi.MetamodelImplementor;
-import org.hibernate.persister.entity.AbstractEntityPersister;
 import org.hibernate.query.Query;
 
 import javax.persistence.NoResultException;
@@ -12,7 +9,6 @@ import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 import javax.transaction.Transactional;
-import java.sql.Timestamp;
 import java.util.List;
 import java.util.Optional;
 
@@ -27,8 +23,8 @@ public abstract class Service<T> {
         this.sessionFactory = sessionFactory;
     }
 
-    protected Optional<T> getSingleResult(CriteriaQuery<T> criteriaQuery) {
-        Query<T> query = sessionFactory.getCurrentSession().createQuery(criteriaQuery);
+    protected Optional getSingleResult(CriteriaQuery<T> criteriaQuery) {
+        Query query = sessionFactory.getCurrentSession().createQuery(criteriaQuery);
         try {
             return Optional.of(query.getSingleResult());
         } catch (NoResultException noResultException) {
@@ -36,24 +32,19 @@ public abstract class Service<T> {
         }
     }
 
-    protected String getTableName() {
-        MetamodelImplementor metaModel = (MetamodelImplementor) sessionFactory.getMetamodel();
-        AbstractEntityPersister persister = (AbstractEntityPersister) metaModel.entityPersister(boClass);
-        return persister.getTableName();
-    }
-
-    public Optional<T> getById(Long id, String idColumn) {
+    public Optional getById(Long id, String idColumn) {
         Session session = sessionFactory.getCurrentSession();
 
         CriteriaBuilder criteriaBuilder = session.getCriteriaBuilder();
         CriteriaQuery<T> criteriaQuery = criteriaBuilder.createQuery(boClass);
-        Root<T> root = criteriaQuery.from(boClass);
 
-        criteriaQuery = criteriaQuery.select(root).where(criteriaBuilder.equal(root.get(idColumn), id));
+        Root<T> root = criteriaQuery.from(boClass);
+        criteriaQuery.select(root).where(criteriaBuilder.equal(root.get(idColumn), id));
+
         return getSingleResult(criteriaQuery);
     }
 
-    public Optional<T> getById(Long id) {
+    public Optional getById(Long id) {
         return getById(id, "id");
     }
 
@@ -62,10 +53,27 @@ public abstract class Service<T> {
         session.save(bo);
     }
 
-    public int deleteAll() {
-        String queryString = String.format("DELETE FROM %s", getTableName());
-        Query typedQuery = sessionFactory.getCurrentSession().createQuery(queryString);
-        return typedQuery.executeUpdate();
+    public List getAll() {
+        Session session = sessionFactory.getCurrentSession();
+
+        CriteriaQuery<T> criteriaQuery = session.getCriteriaBuilder().createQuery(boClass);
+        Root<T> root = criteriaQuery.from(boClass);
+        criteriaQuery.select(root);
+
+        Query query = session.createQuery(criteriaQuery);
+        return query.getResultList();
+    }
+
+    public void deleteAll() {
+        Session session = sessionFactory.getCurrentSession();
+        session.beginTransaction();
+
+        List instances = getAll();
+        for (Object instance : instances) {
+            session.delete(instance);
+        }
+
+        session.getTransaction().commit();
     }
 
 }
