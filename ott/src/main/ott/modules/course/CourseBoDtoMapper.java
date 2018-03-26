@@ -21,10 +21,6 @@ public class CourseBoDtoMapper extends Mapper<CourseBo, CourseDto> {
     @Autowired
     SillonBoDtoMapper sillonBoDtoMapper;
 
-	public CourseBoDtoMapper() {
-		super(CourseBo.class, CourseDto.class);
-	}
-
 	@Override
 	public CourseDto bo2Dto(CourseBo courseBo){
 
