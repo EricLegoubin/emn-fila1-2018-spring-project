@@ -1,5 +1,6 @@
 package main.ott.commands;
 
+import main.ott.modules.base.Service;
 import main.ott.modules.course.CourseBo;
 import main.ott.modules.course.CourseService;
 import main.ott.modules.passage.PassageBo;
@@ -58,7 +59,7 @@ public class PopulaterCommand {
     }
 
     static {
-        Timestamp now = new Timestamp(System.currentTimeMillis() / 1000);
+        Timestamp now = new Timestamp((System.currentTimeMillis() + 100) / 1000);
 
         CourseBo c1 = new CourseBo();
         c1.setIdTrain("train_c1");
@@ -92,26 +93,34 @@ public class PopulaterCommand {
     private CourseService courseService;
     private PointService pointService;
     private SillonService sillonService;
-    private PassageService passageService;
 
     @Autowired
-    public PopulaterCommand(CourseService courseService, PointService pointService, SillonService sillonService, PassageService passageService) {
+    public PopulaterCommand(CourseService courseService, PointService pointService, SillonService sillonService) {
         this.courseService = courseService;
         this.pointService = pointService;
         this.sillonService = sillonService;
-        this.passageService = passageService;
+    }
+
+    private <T> void createWithService(Service<T> service, Collection<T> items) {
+        for (T item : items) {
+            service.create(item);
+        }
     }
 
     @ShellMethod("populate")
     public void populate() {
-
-        for (PointBo point : points.values()) {
-            pointService.create(point);
-        }
-        for (SillonBo sillon : sillons.values()) {
-            sillonService.create(sillon);
-        }
-        courseService.create(courses.get(0));
-
+        createWithService(pointService, points.values());
+        createWithService(sillonService, sillons.values());
+        createWithService(courseService, courses);
     }
+
+    @ShellMethod("showTodayCourses")
+    public void showcourses() {
+        Timestamp now = new Timestamp((System.currentTimeMillis()) / 1000);
+        List courses = courseService.getCourseDtoStartingAfterDate(now);
+        for (Object course : courses) {
+            System.out.println(course);
+        }
+    }
+
 }
