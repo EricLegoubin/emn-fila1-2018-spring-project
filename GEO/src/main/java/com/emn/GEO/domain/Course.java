@@ -1,4 +1,5 @@
 package com.emn.GEO.domain;
+import com.emn.GEO.simulateur.FasterSystemClock;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -34,7 +35,7 @@ public class Course implements Runnable {
 	public void run() {
 		final ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(passagesTheoriques.size());
 		passagesTheoriques.forEach((passage) -> {
-			long delay = (passage.getTime().getTime() - System.currentTimeMillis())/100;
+			long delay = (passage.getTime().getTime() - FasterSystemClock.clock.getTime());
 			if (delay >= 0) {
 				scheduler.schedule(passage, delay, TimeUnit.MILLISECONDS);
 			}
