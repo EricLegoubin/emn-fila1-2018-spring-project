@@ -1,1 +1,8 @@
-COURSE  IEW
+<div class="d-flex justify-content-around mg-bot-50">
+    <h2 *ngIf=course> {{ course.id }} </h2>
+    <button type="button" class="btn btn-danger">Annuler Train</button>
+</div>
+
+<div class="d-flex justify-content-center" *ngIf=chart>
+    <canvas class="col-lg-8 col-12" id="canvas">{{ chart }}</canvas>
+</div>

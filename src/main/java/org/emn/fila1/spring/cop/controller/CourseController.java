@@ -22,7 +22,7 @@ public class CourseController {
 	@Autowired
 	private CourseRepository courseRepository;
 
-
+	@CrossOrigin(origins = "http://localhost:4200")
 	@GetMapping("/{id}")
 	public CourseCOP getCourse(@PathVariable("id") final String id) {
 		return courseRepository.findOne(id);

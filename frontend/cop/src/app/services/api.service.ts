@@ -12,7 +12,6 @@ export class ApiService {
   }
 
   get(path: string) {
-      console.log(this.domain);
       return this.http.get(this.domain + path);
   }
 
