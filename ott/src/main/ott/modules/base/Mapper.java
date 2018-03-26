@@ -4,6 +4,7 @@ import org.modelmapper.ModelMapper;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public abstract class Mapper<T, E> {
 
@@ -26,11 +27,7 @@ public abstract class Mapper<T, E> {
     }
 
     public List<E> listBo2Dto(List<T> listBo) {
-        List<E> listDto = new ArrayList<>(listBo.size());
-        for (T bo : listBo) {
-            listDto.add(modelMapper.map(bo, dtoClass));
-        }
-        return listDto;
+        return listBo.stream().map(this::bo2Dto).collect(Collectors.toList());
     }
 
 }
