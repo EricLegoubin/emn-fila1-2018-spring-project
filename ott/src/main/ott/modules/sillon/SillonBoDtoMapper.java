@@ -1,26 +1,41 @@
 package main.ott.modules.sillon;
 
 import main.ott.modules.base.Mapper;
+import main.ott.modules.passage.PassageBo;
+import main.ott.modules.passage.PassageDto;
+import main.ott.modules.point.PointBo;
+import main.ott.modules.point.PointBoDtoMapper;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 import org.modelmapper.ModelMapper;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component
 public class SillonBoDtoMapper extends Mapper<SillonBo, SillonDto> {
 	
-	private ModelMapper mapper;
+	@Autowired
+	private SillonBoDtoMapper sillonBoDtoMapper;
 
-	public SillonBoDtoMapper() {
-		mapper = new ModelMapper();
-	}
 	@Override
 	public SillonDto bo2Dto(SillonBo bo) {
-		return mapper.map(bo, SillonDto.class);
+		SillonDto dto = new SillonDto();
+		dto.setId(bo.getId());
+		PointBoDtoMapper pmapper = new PointBoDtoMapper();
+		dto.setPoints(bo.getPoints().stream().map(pointBo -> pmapper.bo2Dto(pointBo)).collect(Collectors.toSet()));
+		return dto;
 	}
 
 	@Override
 	public SillonBo dto2Bo(SillonDto dto) {
-		return mapper.map(dto, SillonBo.class);
+		SillonBo bo = new SillonBo();
+		bo.setId(dto.getId());
+		PointBoDtoMapper pmapper = new PointBoDtoMapper();
+		bo.setPoints(dto.getPoints().stream().map(pointBo -> pmapper.dto2Bo(pointBo)).collect(Collectors.toSet()));
+		return bo;
 	}
+	
 
 }

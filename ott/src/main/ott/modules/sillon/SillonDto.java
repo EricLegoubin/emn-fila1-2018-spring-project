@@ -6,7 +6,12 @@ import java.util.Set;
 
 public class SillonDto {
 
-    /**
+    @Override
+	public String toString() {
+		return "SillonDto [id=" + id + ", points=" + points + "]";
+	}
+
+	/**
      * Id du sillion
      */
     private Long id;
