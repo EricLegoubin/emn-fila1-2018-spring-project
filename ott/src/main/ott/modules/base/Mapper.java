@@ -26,8 +26,8 @@ public abstract class Mapper<T, E> {
     }
 
     public List<E> listBo2Dto(List<T> listBo) {
-        List listDto = new ArrayList();
-        for (T bo: listBo     ) {
+        List<E> listDto = new ArrayList<>(listBo.size());
+        for (T bo : listBo) {
             listDto.add(modelMapper.map(bo, dtoClass));
         }
         return listDto;
