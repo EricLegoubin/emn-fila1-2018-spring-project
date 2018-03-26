@@ -26,18 +26,18 @@ public class Simulateur{
 	}
 		
 	public void startSimulation() {
-            for(int i = 0; i < coursesToSimulate.size(); i++){
+            /*for(int i = 0; i < coursesToSimulate.size(); i++){
                 if(i == 2){
                     Course c = coursesToSimulate.get(i);
                     c.addCancelationOnPassage(c.getPassages().get(2).getPoi().getId());
                 }
-                if(i%3 == 0){
+                  if(i%3 == 0){
                     Course c = coursesToSimulate.get(i);
                     int time = new Random().nextInt(59) + 1;
                     int poi = new Random().nextInt(c.getPassages().size());
                     c.addPerturbationOnPassage(c.getPassages().get(poi).getPoi().getId(), time);
                 }
-            }
+            }*/
 		this.coursesToSimulate.forEach((course)-> {
                         new Thread(course).start();
 		});

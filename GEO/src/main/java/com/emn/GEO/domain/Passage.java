@@ -3,6 +3,7 @@ package com.emn.GEO.domain;
 import java.sql.Timestamp;
 
 import com.emn.GEO.kafka.Sender;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -12,28 +13,41 @@ public class Passage implements Runnable {
 
     private POI poi;
 
-    private Timestamp time;
+    private Timestamp timestamp;
 
-    public Passage(Course course, POI poi, Timestamp time) {
+    public Passage() {
+    }
+    @JsonProperty("point")
+    public void setPoi(POI poi) {
+        this.poi = poi;
+    }
+
+    
+    
+    public Passage(Course course, POI poi, Timestamp timestamp) {
         super();
         this.course = course;
         this.poi = poi;
-        this.time = time;
+        this.timestamp = timestamp;
     }
 
     public void run() {
         ObjectMapper mapper = new ObjectMapper();
         try {
-            // TODO convert to DTO
-            Sender.sender.send("passage", mapper.writeValueAsString(this));
+            Sender.sender.send("cop", mapper.writeValueAsString(this));
         } catch (JsonProcessingException e) {
             e.printStackTrace();
         }
     }
 
-    public Timestamp getTime() {
-        return time;
+    public Timestamp getTimestamp() {
+        return timestamp;
     }
+
+    public void setTimestamp(Timestamp timestamp) {
+        this.timestamp = timestamp;
+    }
+
 
     public POI getPoi() {
         return poi;
@@ -47,8 +61,13 @@ public class Passage implements Runnable {
         this.course = course;
     }
 
-    public void setTime(Timestamp time) {
-        this.time = time;
+    @Override
+    public String toString() {
+        return "Passage{" + "course=" + course + ", poi=" + poi + ", timestamp=" + timestamp + '}';
     }
+
+ 
+    
+    
 
 }

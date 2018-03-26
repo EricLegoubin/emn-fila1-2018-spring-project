@@ -11,6 +11,10 @@ import org.springframework.stereotype.Component;
 import com.emn.GEO.GeoApplication;
 import com.emn.GEO.domain.Course;
 import com.emn.GEO.simulateur.Simulateur;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Arrays;
 
 @Component
 public class Receiver {
@@ -26,12 +30,14 @@ public class Receiver {
 	}
 	
 	@KafkaListener(topics="dailyCourse")
-	public void receiveMocks(ConsumerRecord<?, ?> cr) {
+	public void receiveMocks(ConsumerRecord<?, ?> cr) throws IOException {
 //		Would be used if mocks were transfered as dto, but we need ALL the information here.
 //		CourseMapper courseMapper = new CourseMapper();
 //		List<Course> coursesToSimulate = courseMapper.courseDTOsToCourses((List<CourseDTO>) cr.value());
 		System.out.println("Received mocks : " + cr.value().toString());
-		List<Course> coursesToSimulate = (List<Course>) cr.value();
+                ObjectMapper mapper = new ObjectMapper();
+		List<Course> coursesToSimulate = new ArrayList<>(Arrays.asList(mapper.readValue(cr.value().toString(), Course[].class)));
+                System.out.println(coursesToSimulate.toString());
 		Simulateur simulateur = new Simulateur(coursesToSimulate);
 		GeoApplication.setSimulateur(simulateur);
 		simulateur.startSimulation();
@@ -39,9 +45,10 @@ public class Receiver {
 	}
         
         @KafkaListener(topics="newCourse")
-        public void receiveCourse(ConsumerRecord<?, ?> cr){
-        	System.out.println("Received new course : " + cr.value().toString());
-            Course course = (Course) cr.value();
+        public void receiveCourse(ConsumerRecord<?, ?> cr) throws IOException{
+            ObjectMapper mapper = new ObjectMapper();
+            System.out.println("Received new course : " + cr.value().toString());
+            Course course = mapper.readValue(cr.value().toString(), Course.class) ;
             GeoApplication.getSimulateur().addCourse(course);
             new Thread(course).start();
         }

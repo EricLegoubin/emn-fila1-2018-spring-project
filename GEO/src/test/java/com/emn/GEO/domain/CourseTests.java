@@ -37,21 +37,21 @@ public class CourseTests {
         passages.add(new Passage(this.course, poi2, new Timestamp(2017, 12, 28, 14, 10, 0, 0)));
         passages.add(new Passage(this.course, poi3, new Timestamp(2017, 12, 28, 14, 20, 0, 0)));
         sillons.add(sillon);
-        this.course = new Course(new Long(1), new Long(1), sillons, passages);
+        this.course = new Course(new Long(1), new String("aze"), sillons, passages);
     }
     
     @Test
     public void testAddPErturbation(){
         course.addPerturbationOnPassage(new Long(2), 5);
-        Assert.assertEquals(new Timestamp(2017, 12, 28, 14, 0, 0, 0), course.getPassages().get(0).getTime());
-        Assert.assertEquals(new Timestamp(2017, 12, 28, 14, 15, 0, 0), course.getPassages().get(1).getTime());
-        Assert.assertEquals(new Timestamp(2017, 12, 28, 14, 25, 0, 0), course.getPassages().get(2).getTime());
+        Assert.assertEquals(new Timestamp(2017, 12, 28, 14, 0, 0, 0), course.getPassages().get(0).getTimestamp());
+        Assert.assertEquals(new Timestamp(2017, 12, 28, 14, 15, 0, 0), course.getPassages().get(1).getTimestamp());
+        Assert.assertEquals(new Timestamp(2017, 12, 28, 14, 25, 0, 0), course.getPassages().get(2).getTimestamp());
     }
     
     @Test
     public void testCancelationOnPassage(){
         course.addCancelationOnPassage(new Long(2));
-        Assert.assertEquals(new Timestamp(2017, 12, 28, 14, 0, 0, 0), course.getPassages().get(0).getTime());
+        Assert.assertEquals(new Timestamp(2017, 12, 28, 14, 0, 0, 0), course.getPassages().get(0).getTimestamp());
         Assert.assertEquals(1, course.getPassages().size());
     }
 }
