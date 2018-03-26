@@ -17,7 +17,7 @@ public class CourseService extends Service<CourseBo> {
         super(CourseBo.class, sessionFactory);
     }
 
-    public List getCourseDtoStartingBetweenDates(Timestamp debut, Timestamp fin) {
+    public List<CourseBo> getCourseDtoStartingBetweenDates(Timestamp debut, Timestamp fin) {
         String queryString = "FROM courses c " +
                 "INNER JOIN c.computedPassages p " +
                 "WHERE p.timestamp > :debut AND p.timestamp < :fin";
@@ -27,7 +27,7 @@ public class CourseService extends Service<CourseBo> {
         return query.getResultList();
     }
 
-    public List getCourseDtoStartingAfterDate(Timestamp debut) {
+    public List<CourseBo> getCourseDtoStartingAfterDate(Timestamp debut) {
         String queryString = "FROM courses c " +
                 "INNER JOIN c.computedPassages p " +
                 "WHERE p.timestamp > :debut";
