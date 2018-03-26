@@ -13,7 +13,6 @@ public class CourseController {
 
     @Autowired
     private CourseServices courseServices;
-    @Autowired
     private CourseService courseService;
 
     // POST /addCourses
