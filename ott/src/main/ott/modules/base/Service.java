@@ -1,7 +1,6 @@
 package main.ott.modules.base;
 
 import main.ott.modules.course.CourseBo;
-import main.ott.modules.course.CourseDto;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.metamodel.spi.MetamodelImplementor;
@@ -20,8 +19,8 @@ import java.util.Optional;
 @Transactional
 public abstract class Service<T> {
 
-    private Class<T> boClass;
-    private SessionFactory sessionFactory;
+    protected Class<T> boClass;
+    protected SessionFactory sessionFactory;
 
     protected Service(Class<T> boClass, SessionFactory sessionFactory) {
         this.boClass = boClass;
@@ -32,7 +31,7 @@ public abstract class Service<T> {
         Query<T> query = sessionFactory.getCurrentSession().createQuery(criteriaQuery);
         try {
             return Optional.of(query.getSingleResult());
-        } catch(NoResultException noResultException) {
+        } catch (NoResultException noResultException) {
             return Optional.empty();
         }
     }
@@ -67,25 +66,6 @@ public abstract class Service<T> {
         String queryString = String.format("DELETE FROM %s", getTableName());
         Query typedQuery = sessionFactory.getCurrentSession().createQuery(queryString);
         return typedQuery.executeUpdate();
-    }
-
-
-    public List<CourseBo> getCourseDtoStartingAfterDate(Timestamp timestamp){
-        String queryString = String.format("SELECT * FROM courses c WHERE c.id IN (SELECT cp.courses_id FROM courses_passages cp WHERE cp.computedPassages_id IN (SELECT p.id FROM passages p WHERE p.dateTime >= %s )" , timestamp.toString());
-        Query typedQuery = sessionFactory.getCurrentSession().createQuery(queryString);
-        return typedQuery.getResultList();
-    }
-
-    /**
-     * Get full objets for all courses that start between two dates
-     * @param debut
-     * @param fin
-     * @return
-     */
-    public List<CourseBo> getCourseDtoStartingBetweenDates(Timestamp debut,Timestamp fin){
-        String queryString = String.format("SELECT * FROM courses c WHERE c.id IN (SELECT cp.courses_id FROM courses_passages cp WHERE cp.computedPassages_id IN (SELECT p.id FROM passages p WHERE p.dateTime > %s  AND p.dateTime >= %s)" , debut.toString(),fin.toString());
-        Query typedQuery = sessionFactory.getCurrentSession().createQuery(queryString);
-        return typedQuery.getResultList();
     }
 
 }

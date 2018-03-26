@@ -13,11 +13,6 @@
                 <prop key="hibernate.dialect">org.hibernate.dialect.MySQL5Dialect</prop>
             </props>
         </property>
-        <property name="annotatedClasses">
-            <array>
-                <value>main.ott.modules.point.PointDto</value>
-            </array>
-        </property>
     </bean>
 
     <bean id="dataSource" class="org.apache.tomcat.dbcp.dbcp2.BasicDataSource">
