@@ -23,7 +23,7 @@ public class PassageDto {
     /**
      * Les courses liées à ce passage
      */
-    private List<CourseDto> courses;
+    private CourseDto course;
 
     public PassageDto() {
     	super();
@@ -51,11 +51,11 @@ public class PassageDto {
         this.point = point;
     }
 
-    public List<CourseDto> getCourses() {
-        return courses;
+    public CourseDto getCourse() {
+        return course;
     }
 
-    public void setCourses(List<CourseDto> courses) {
-        this.courses = courses;
+    public void setCourse(CourseDto course) {
+        this.course = course;
     }
 }

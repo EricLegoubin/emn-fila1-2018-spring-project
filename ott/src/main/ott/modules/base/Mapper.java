@@ -8,23 +8,12 @@ import java.util.stream.Collectors;
 
 public abstract class Mapper<T, E> {
 
-    private ModelMapper modelMapper = new ModelMapper();
+   // private ModelMapper modelMapper = new ModelMapper();
 
-    private Class<T> boClass;
-    private Class<E> dtoClass;
 
-    public Mapper(Class<T> boClass, Class<E> dtoClass) {
-        this.boClass = boClass;
-        this.dtoClass = dtoClass;
-    }
+    public abstract E bo2Dto(T bo);
 
-    public E bo2Dto(T bo) {
-        return modelMapper.map(bo, dtoClass);
-    }
-
-    public T dto2Bo(E dto) {
-        return modelMapper.map(dto, boClass);
-    }
+    public abstract T dto2Bo(E dto);
 
     public List<E> listBo2Dto(List<T> listBo) {
         return listBo.stream().map(this::bo2Dto).collect(Collectors.toList());

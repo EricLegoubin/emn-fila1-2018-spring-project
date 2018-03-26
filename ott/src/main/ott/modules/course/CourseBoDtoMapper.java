@@ -37,4 +37,9 @@ public class CourseBoDtoMapper extends Mapper<CourseBo, CourseDto> {
 
 	    return dto;
     }
+
+    @Override
+    public CourseBo dto2Bo(CourseDto dto) {
+        return null;
+    }
 }
