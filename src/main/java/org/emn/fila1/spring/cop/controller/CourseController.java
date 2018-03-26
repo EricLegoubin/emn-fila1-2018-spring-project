@@ -1,13 +1,9 @@
 package org.emn.fila1.spring.cop.controller;
 
-import org.emn.fila1.spring.cop.model.Course;
 import org.emn.fila1.spring.cop.model.CourseCOP;
 import org.emn.fila1.spring.cop.repository.CourseRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * @see<a href="http://www.restapitutorial.com/lessons/httpmethods.html">Using

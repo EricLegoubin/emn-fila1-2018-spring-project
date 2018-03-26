@@ -16,7 +16,7 @@ public class KafkaConfiguration {
 
     private Map<String, Object> senderProps() {
         Map<String, Object> props = new HashMap<>();
-        props.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, "");
+        props.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, "barnab2.tk:9092");
         props.put(ProducerConfig.RETRIES_CONFIG, 0);
         props.put(ProducerConfig.BATCH_SIZE_CONFIG, 16384);
         props.put(ProducerConfig.LINGER_MS_CONFIG, 1);

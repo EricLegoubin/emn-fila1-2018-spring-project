@@ -19,7 +19,7 @@ public class KafkaReceiver {
 	private final CountDownLatch latch = new CountDownLatch(1);
 	
 	@KafkaListener(topics = "cop")
-	public void listen(ConsumerRecord<?, ?> cr) throws Exception {
+	public void listen(ConsumerRecord<?, ?> cr) {
 		Passage passage = (Passage) cr.value();
 		geoLocationService.calculatePassage(passage);
 		latch.countDown();

@@ -10,9 +10,9 @@ import org.springframework.stereotype.Service;
 public class KafkaSender {
 	
 	@Autowired
-	private KafkaTemplate<String, JSONObject> kafkaTemplate;
+	private KafkaTemplate<String, String> kafkaTemplate;
 	
 	public void send(String topic, JSONObject jsonObject) {
-	    kafkaTemplate.send(topic, jsonObject);
+		kafkaTemplate.send(topic, jsonObject.toJSONString());
 	}
 }
