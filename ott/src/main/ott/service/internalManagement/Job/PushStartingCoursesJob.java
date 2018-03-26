@@ -11,12 +11,13 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
+import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
-
+@Component
 public class PushStartingCoursesJob {
 
 
@@ -34,12 +35,15 @@ public class PushStartingCoursesJob {
     @Autowired
     private Sender sender;
 
-    @Scheduled(cron = "0 */5 * ? * *")//task every 5 min
+    //@Scheduled(cron = "0 */5 * ? * *")//task every 5 min
+    @Scheduled(cron = "* * * ? * *")
         public void pushCourses() {
         log.info("Sending Starting Courses ");
 
         List<CourseBo> listCourseBo = getTodaysCourses();
+        System.out.println(listCourseBo.toString());
         List<CourseDto> courses = mapperCourse.listBo2Dto(listCourseBo);
+        System.out.println(courses.toString());
         String message = "";
         //Send JSON with all courses to other components
         try {
@@ -61,4 +65,7 @@ public class PushStartingCoursesJob {
         long nowPlus10 = System.currentTimeMillis() + 600000; //milliseconds in a day
         return courseService.getCourseDtoStartingBetweenDates(new Timestamp(nowPlus5),new Timestamp(nowPlus10));
        }
+
+
+
 }
