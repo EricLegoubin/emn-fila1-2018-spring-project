@@ -22,7 +22,12 @@ public class SillonBo {
     @JoinTable(name = "points_sillons")
     private Set<PointBo> points;
 
-    public SillonBo() {
+    @Override
+	public String toString() {
+		return "SillonBo [id=" + id + ", version=" + version + ", points=" + points + "]";
+	}
+
+	public SillonBo() {
         super();
     }
 
