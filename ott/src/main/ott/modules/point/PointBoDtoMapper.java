@@ -7,8 +7,19 @@ import org.springframework.stereotype.Component;
 @Component
 public class PointBoDtoMapper extends Mapper<PointBo, PointDto> {
 
-	public PointBoDtoMapper() {
-		super(PointBo.class, PointDto.class);
+
+	@Override
+	public PointDto bo2Dto(PointBo bo) {
+
+		PointDto pointDto = new PointDto();
+		pointDto.setGare(bo.isGare());
+		pointDto.setId(bo.getId());
+		pointDto.setNom(bo.getNom());
+		return pointDto;
 	}
 
+	@Override
+	public PointBo dto2Bo(PointDto dto) {
+		return null;
+	}
 }
