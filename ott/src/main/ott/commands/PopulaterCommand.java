@@ -4,7 +4,6 @@ import main.ott.modules.base.Service;
 import main.ott.modules.course.CourseBo;
 import main.ott.modules.course.CourseService;
 import main.ott.modules.passage.PassageBo;
-import main.ott.modules.passage.PassageService;
 import main.ott.modules.point.PointBo;
 import main.ott.modules.point.PointService;
 import main.ott.modules.sillon.SillonBo;
@@ -13,11 +12,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.shell.standard.ShellComponent;
 import org.springframework.shell.standard.ShellMethod;
 
-import java.awt.*;
 import java.sql.Timestamp;
-import java.time.LocalDateTime;
 import java.util.*;
-import java.util.List;
 
 @ShellComponent
 public class PopulaterCommand {
@@ -43,8 +39,8 @@ public class PopulaterCommand {
                 points.get("lyon"),
                 points.get("p2")
         ))));
-        sillons.put("s2", new SillonBo(new HashSet<PointBo>(Collections.singletonList(points.get("paris")))));
-        sillons.put("s3", new SillonBo(new HashSet<PointBo>(Collections.singletonList(points.get("p1")))));
+        sillons.put("s2", new SillonBo(new HashSet<>(Collections.singletonList(points.get("paris")))));
+        sillons.put("s3", new SillonBo(new HashSet<>(Collections.singletonList(points.get("p1")))));
         HashSet<PointBo> s4 = new HashSet<>();
         s4.add(points.get("Nantes"));
         s4.add(points.get("Oudon"));
@@ -55,11 +51,10 @@ public class PopulaterCommand {
         s5.add(points.get("Chartres"));
         s5.add(points.get("Paris"));
         sillons.put("s5", new SillonBo(s5));
-
     }
 
     static {
-        Timestamp now = new Timestamp((System.currentTimeMillis() + 100) / 1000);
+        Timestamp now = new Timestamp(System.currentTimeMillis());
 
         CourseBo c1 = new CourseBo();
         c1.setIdTrain("train_c1");
@@ -107,20 +102,20 @@ public class PopulaterCommand {
         }
     }
 
-    @ShellMethod("populate")
+    @SuppressWarnings("unused")
+    @ShellMethod("Remplit la base de données avec des données de test")
     public void populate() {
         createWithService(pointService, points.values());
         createWithService(sillonService, sillons.values());
         createWithService(courseService, courses);
     }
 
-    @ShellMethod("showTodayCourses")
+    @SuppressWarnings("unused")
+    @ShellMethod("Teste l'affichage de courses")
     public void showcourses() {
-        Timestamp now = new Timestamp((System.currentTimeMillis()) / 1000);
-        List courses = courseService.getCourseDtoStartingAfterDate(now);
-        for (Object course : courses) {
-            System.out.println(course);
-        }
+        Timestamp now = new Timestamp(System.currentTimeMillis() - (long) 3.6e6);
+        List<CourseBo> courses = courseService.getCourseDtoStartingAfterDate(now);
+        System.out.println(courses.size());
     }
 
 }

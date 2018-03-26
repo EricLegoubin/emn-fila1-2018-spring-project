@@ -53,7 +53,7 @@ public abstract class Service<T> {
         session.save(bo);
     }
 
-    public List getAll() {
+    public List<T> getAll() {
         Session session = sessionFactory.getCurrentSession();
 
         CriteriaQuery<T> criteriaQuery = session.getCriteriaBuilder().createQuery(boClass);
