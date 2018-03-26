@@ -1,11 +1,9 @@
 package main.ott.modules.passage;
 
-import main.ott.modules.course.CourseBo;
 import main.ott.modules.point.PointBo;
 
 import javax.persistence.*;
-import java.time.LocalDateTime;
-import java.util.Set;
+import java.sql.Timestamp;
 
 @Entity(name = "passages")
 @Table(name = "passages")
@@ -21,7 +19,7 @@ public class PassageBo {
     private Long version;
 
     @Column(name = "dateTime")
-    private LocalDateTime localDateTime;
+    private Timestamp timestamp;
 
     @ManyToOne(cascade = CascadeType.ALL)
     private PointBo point;
@@ -29,8 +27,8 @@ public class PassageBo {
     public PassageBo() {
     }
 
-    public PassageBo(LocalDateTime localDateTime, PointBo point) {
-        this.localDateTime = localDateTime;
+    public PassageBo(Timestamp timestamp, PointBo point) {
+        this.timestamp = timestamp;
         this.point = point;
     }
 
@@ -50,12 +48,12 @@ public class PassageBo {
         this.version = version;
     }
 
-    public LocalDateTime getLocalDateTime() {
-        return localDateTime;
+    public Timestamp getTimestamp() {
+        return timestamp;
     }
 
-    public void setLocalDateTime(LocalDateTime localDateTime) {
-        this.localDateTime = localDateTime;
+    public void setTimestamp(Timestamp localDateTime) {
+        this.timestamp = localDateTime;
     }
 
     public PointBo getPoint() {

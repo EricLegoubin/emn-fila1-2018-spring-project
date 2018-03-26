@@ -17,22 +17,23 @@ public class CourseService extends Service<CourseBo> {
         super(CourseBo.class, sessionFactory);
     }
 
-    public List getCourseDtoStartingAfterDate(Timestamp timestamp) {
-        String queryString = String.format("SELECT * FROM courses c WHERE c.id IN " +
-                "(SELECT cp.courses_id FROM courses_passages cp WHERE cp.computedPassages_id IN " +
-                "(SELECT p.id FROM passages p WHERE p.dateTime >= %s )",
-                timestamp.toString());
-        Query typedQuery = sessionFactory.getCurrentSession().createQuery(queryString);
-        return typedQuery.getResultList();
+    public List getCourseDtoStartingBetweenDates(Timestamp debut, Timestamp fin) {
+        String queryString = "FROM courses c " +
+                "INNER JOIN c.computedPassages p " +
+                "WHERE p.timestamp > :debut AND p.timestamp < :fin";
+        Query query = sessionFactory.getCurrentSession().createQuery(queryString);
+        query.setParameter("debut", debut);
+        query.setParameter("fin", fin);
+        return query.getResultList();
     }
 
-    public List getCourseDtoStartingBetweenDates(Timestamp debut, Timestamp fin) {
-        String queryString = String.format("SELECT * FROM courses c WHERE c.id IN " +
-                "(SELECT cp.courses_id FROM courses_passages cp WHERE cp.computedPassages_id IN " +
-                "(SELECT p.id FROM passages p WHERE p.dateTime > %s  AND p.dateTime >= %s)",
-                debut.toString(), fin.toString());
-        Query typedQuery = sessionFactory.getCurrentSession().createQuery(queryString);
-        return typedQuery.getResultList();
+    public List getCourseDtoStartingAfterDate(Timestamp debut) {
+        String queryString = "FROM courses c " +
+                "INNER JOIN c.computedPassages p " +
+                "WHERE p.timestamp > :debut";
+        Query query = sessionFactory.getCurrentSession().createQuery(queryString);
+        query.setParameter("debut", debut);
+        return query.getResultList();
     }
 
 }

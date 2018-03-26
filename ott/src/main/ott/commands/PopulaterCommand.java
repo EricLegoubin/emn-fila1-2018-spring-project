@@ -13,6 +13,7 @@ import org.springframework.shell.standard.ShellComponent;
 import org.springframework.shell.standard.ShellMethod;
 
 import java.awt.*;
+import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.util.*;
 import java.util.List;
@@ -57,7 +58,7 @@ public class PopulaterCommand {
     }
 
     static {
-        LocalDateTime now = LocalDateTime.now();
+        Timestamp now = new Timestamp(System.currentTimeMillis() / 1000);
 
         CourseBo c1 = new CourseBo();
         c1.setIdTrain("train_c1");
