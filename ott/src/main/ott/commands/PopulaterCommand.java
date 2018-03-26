@@ -57,7 +57,7 @@ public class PopulaterCommand {
     }
 
     static {
-        Timestamp now = new Timestamp(System.currentTimeMillis());
+        Timestamp now = new Timestamp(System.currentTimeMillis() + 600000);
 
         CourseBo c1 = new CourseBo();
         c1.setIdTrain("TrainC1");

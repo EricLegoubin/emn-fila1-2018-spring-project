@@ -22,7 +22,7 @@ public class CourseService extends Service<CourseBo> {
         Session session = sessionFactory.getCurrentSession();
         String queryString = "FROM courses c " +
                 "INNER JOIN c.computedPassages p " +
-                "WHERE p.timestamp > :debut AND p.timestamp < :fin";
+                "WHERE p.timestamp >= :debut AND p.timestamp < :fin";
         @SuppressWarnings("unchecked") Query<CourseBo> query = session.createQuery(queryString);
         query.setParameter("debut", debut);
         query.setParameter("fin", fin);

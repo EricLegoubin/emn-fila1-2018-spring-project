@@ -35,7 +35,7 @@ public class PushStartingCoursesJob {
     @Autowired
     private Sender sender;
 
-    g@Scheduled(cron = "0 */5 * ? * *")//task every 5 min
+    @Scheduled(cron = "0 */5 * ? * *")//task every 5 min
         public void pushCourses() {
         log.info("Sending Starting Courses ");
 

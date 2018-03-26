@@ -44,11 +44,17 @@ public class PushDailyCousesJob {
         List<CourseDto> courses = mapperCourse.listBo2Dto(listCourseBo);
         String message = "";
         //Send JSON with all courses to other components
+
+        if (!courses.isEmpty()){
+            courses = MockBAse.getCourses();
+        }
         try {
              message = mapperJson.writeValueAsString(courses);
         } catch (JsonProcessingException e) {
             e.printStackTrace();
         }
+
+        System.out.println(message);
         sender.send("dailyCourse",message);
 
     }
