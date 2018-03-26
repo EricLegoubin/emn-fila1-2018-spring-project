@@ -5,15 +5,15 @@ import main.ott.modules.course.CourseService;
 import main.ott.modules.point.PointService;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.stereotype.Component;
+import org.springframework.web.bind.annotation.*;
 
+@RestController
 public class CourseController {
 
     @Autowired
     private CourseServices courseServices;
+    @Autowired
     private CourseService courseService;
 
     // POST /addCourses

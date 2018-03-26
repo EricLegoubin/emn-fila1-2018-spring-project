@@ -3,6 +3,8 @@ package main.ott.modules.course;
 import main.ott.modules.passage.PassageDto;
 import main.ott.modules.sillon.SillonDto;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
 import java.util.List;
 import java.util.Set;
 
@@ -11,6 +13,7 @@ public class CourseDto {
     /**
      * Id de la course.
      */
+
     private Long id;
     /**
      * Id du train relié à la course.
