@@ -62,7 +62,7 @@ $(document).ready(function () {
     // console.log(heightRow);
     // var rowCount = Math.round(window.height / heightRow);
     // console.log(rowCount);
-    var board = new DepartureBoard(document.getElementById('test'), {rowCount: 15, letterCount: 50});
+    var board = new DepartureBoard(document.getElementById('test'), {rowCount: 8, letterCount: 50});
 
     $("#ajout").click(function (e) {
         // console.log("BOUTON CLIQUE");
