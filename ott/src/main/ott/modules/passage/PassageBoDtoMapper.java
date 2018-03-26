@@ -19,11 +19,16 @@ public class PassageBoDtoMapper extends Mapper<PassageBo, PassageDto> {
 		PassageDto dto = new PassageDto();
 		dto.setPoint(pointBoDtoMapper.bo2Dto(bo.getPoint()));
 		dto.setTimestamp(bo.getTimestamp());
-		return null;
+		return dto;
 	}
 
 	@Override
 	public PassageBo dto2Bo(PassageDto dto) {
-		return null;
+		PassageBo passageBo = new PassageBo();
+
+		passageBo.setPoint(pointBoDtoMapper.dto2Bo(dto.getPoint()));
+		passageBo.setTimestamp(dto.getTimestamp());
+
+		return passageBo;
 	}
 }

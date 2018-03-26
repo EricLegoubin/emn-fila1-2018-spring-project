@@ -36,6 +36,11 @@ public class CourseBoDtoMapper extends Mapper<CourseBo, CourseDto> {
 
     @Override
     public CourseBo dto2Bo(CourseDto dto) {
-        return null;
+        CourseBo courseBo = new CourseBo();
+        courseBo.setComputedPassages(dto.getComputedPassages().stream().map(passageBoDtoMapper::dto2Bo).collect(Collectors.toSet()));
+        courseBo.setIdTrain(dto.getIdTrain());
+        courseBo.setId(dto.getId());
+        courseBo.setSillons(dto.getSillons().stream().map(sillonBoDtoMapper::dto2Bo).collect(Collectors.toSet()));
+        return courseBo;
     }
 }

@@ -20,6 +20,11 @@ public class PointBoDtoMapper extends Mapper<PointBo, PointDto> {
 
 	@Override
 	public PointBo dto2Bo(PointDto dto) {
-		return null;
+		PointBo pointBo = new PointBo();
+		pointBo.setGare(dto.isGare());
+		pointBo.setId(dto.getId());
+		pointBo.setNom(dto.getNom());
+
+		return pointBo;
 	}
 }
