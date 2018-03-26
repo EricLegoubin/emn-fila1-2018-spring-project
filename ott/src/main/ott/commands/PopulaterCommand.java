@@ -23,10 +23,9 @@ public class PopulaterCommand {
     private static List<CourseBo> courses = new LinkedList<>();
 
     static {
-        points.put("lyon", new PointBo("Lyon", true));
-        points.put("paris", new PointBo("Paris", true));
-        points.put("p1", new PointBo("p1", false));
-        points.put("p2", new PointBo("p2", false));
+        points.put("Lyon", new PointBo("Lyon", true));
+        points.put("P1", new PointBo("p1", false));
+        points.put("P2", new PointBo("p2", false));
         points.put("Nantes", new PointBo("Nantes", true));
         points.put("Oudon", new PointBo("Oudon", false));
         points.put("Ancenis", new PointBo("Ancenis", false));
@@ -35,42 +34,46 @@ public class PopulaterCommand {
     }
 
     static {
-        sillons.put("s1", new SillonBo(new HashSet<>(Arrays.asList(
-                points.get("lyon"),
-                points.get("p2")
+        sillons.put("S1", new SillonBo(new HashSet<>(Arrays.asList(
+                points.get("Lyon"),
+                points.get("P2")
         ))));
-        sillons.put("s2", new SillonBo(new HashSet<>(Collections.singletonList(points.get("paris")))));
-        sillons.put("s3", new SillonBo(new HashSet<>(Collections.singletonList(points.get("p1")))));
-        HashSet<PointBo> s4 = new HashSet<>();
+
+        sillons.put("S2", new SillonBo(new HashSet<>(Collections.singletonList(points.get("Paris")))));
+
+        sillons.put("S3", new SillonBo(new HashSet<>(Collections.singletonList(points.get("P1")))));
+
+        Set<PointBo> s4 = new HashSet<>();
         s4.add(points.get("Nantes"));
         s4.add(points.get("Oudon"));
         s4.add(points.get("Ancenis"));
-        sillons.put("s4", new SillonBo(s4));
-        HashSet<PointBo> s5 = new HashSet<>();
+        sillons.put("S4", new SillonBo(s4));
+
+        Set<PointBo> s5 = new HashSet<>();
         s5.add(points.get("Ancenis"));
         s5.add(points.get("Chartres"));
         s5.add(points.get("Paris"));
-        sillons.put("s5", new SillonBo(s5));
+        sillons.put("S5", new SillonBo(s5));
     }
 
     static {
         Timestamp now = new Timestamp(System.currentTimeMillis());
 
         CourseBo c1 = new CourseBo();
-        c1.setIdTrain("train_c1");
+        c1.setIdTrain("TrainC1");
         c1.setComputedPassages(new HashSet<>(Arrays.asList(
-                new PassageBo(now, points.get("lyon")),
-                new PassageBo(now, points.get("p2")),
-                new PassageBo(now, points.get("paris"))
+                new PassageBo(now, points.get("Lyon")),
+                new PassageBo(now, points.get("P2")),
+                new PassageBo(now, points.get("Paris"))
         )));
         c1.setSillons(new HashSet<>(Arrays.asList(
-                sillons.get("s1"),
-                sillons.get("s2")
+                sillons.get("S1"),
+                sillons.get("S2")
         )));
         courses.add(c1);
 
         CourseBo c2 = new CourseBo();
-        c2.setIdTrain("train_c2");
+        c2.setIdTrain("TrainC2");
         c2.setComputedPassages(new HashSet<>(Arrays.asList(
                 new PassageBo(now, points.get("Nantes")),
                 new PassageBo(now, points.get("Oudon")),
@@ -79,8 +82,8 @@ public class PopulaterCommand {
                 new PassageBo(now, points.get("Paris"))
         )));
         c2.setSillons(new HashSet<>(Arrays.asList(
-                sillons.get("s4"),
-                sillons.get("s5")
+                sillons.get("S4"),
+                sillons.get("S5")
         )));
         courses.add(c2);
     }
