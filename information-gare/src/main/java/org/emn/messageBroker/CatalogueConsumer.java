@@ -23,7 +23,7 @@ public class CatalogueConsumer extends MessageConsumer {
 	LinkedTransferQueue<CourseCatalogue> queue;
 
 	public CatalogueConsumer(LinkedTransferQueue<CourseCatalogue> catalogueTransferQueue) {
-		super("Catalogue");
+		super("testAjout2");
 		this.queue = catalogueTransferQueue;
 	}
 
@@ -34,7 +34,8 @@ public class CatalogueConsumer extends MessageConsumer {
 			ConsumerRecords<String, String> records = kafkaConsumer.poll(100);
 			for (ConsumerRecord<String, String> record : records) {
 				// print the offset,key and value for the consumer records.
-				System.out.printf("offset = %d, key = %s, value = %s\n", record.offset(), record.key(), record.value());
+				// System.out.printf("offset = %d, key = %s, value = %s\n", record.offset(),
+				// record.key(), record.value());
 				try {
 					// CourseCatalogue obj = mapper.readValue(record.value(),
 					// CourseCatalogue.class);
@@ -43,6 +44,7 @@ public class CatalogueConsumer extends MessageConsumer {
 					for (CourseCatalogue course : obj) {
 						queue.add(course);
 					}
+
 				} catch (IOException e) {
 					e.printStackTrace();
 				}

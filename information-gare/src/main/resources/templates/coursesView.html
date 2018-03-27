@@ -27,8 +27,13 @@
                 <span class="gareArrive" th:if="${type == 'arrivees'}" th:text="${course.gareDepart}"></span>
             </td>
             <td>
-                <span class="retard" th:if="${type == 'arrivees'}"  th:text="${course.getArriveeRetardMessage()}"></span>
-                <span class="retard" th:if="${type == 'departs'}"  th:text="${course.getDepartRetardMessage()}"></span>
+                <div th:if="${!course.getCancelled()}">
+                    <span class="retard" th:if="${type == 'arrivees'}"  th:text="${course.getArriveeRetardMessage()}"></span>
+                    <span class="retard" th:if="${type == 'departs'}"  th:text="${course.getDepartRetardMessage()}"></span>
+                </div>
+                <div th:if="${course.getCancelled()}">
+                    <span class="retard cancelled">Annulé</span>
+                </div>
             </td>
         </tr>
     </table>
@@ -49,6 +54,7 @@
     </div>
     <button id="ajout"> AJOUT LIGNE </button>
     <button id="retard"> AJOUT RETARD </button>
+    <button id="annuler">ANNULER</button>
     <div id="clock">
         <span id="hours">20</span>
         <span id="dot">:</span>

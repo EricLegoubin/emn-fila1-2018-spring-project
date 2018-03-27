@@ -7,6 +7,7 @@ import org.emn.messageBroker.MajConsumer;
 import org.imta.fila1.spring.informationgare.converter.CatalogueToCourseConverter;
 import org.imta.fila1.spring.informationgare.converter.MajToCourseConverter;
 import org.imta.fila1.spring.informationgare.modele.catalogue.CourseCatalogue;
+import org.imta.fila1.spring.informationgare.modele.maj.MajObject;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
@@ -29,7 +30,7 @@ public class InformationgareApplication {
 		threadCatalogueConverter.start();
 
 		// ###Maj### //
-		LinkedTransferQueue<CourseCatalogue> majTransferQueue = new LinkedTransferQueue<>();
+		LinkedTransferQueue<MajObject> majTransferQueue = new LinkedTransferQueue<>();
 
 		Thread threadMajConsumer = new Thread(new MajConsumer(majTransferQueue));
 		threadMajConsumer.start();

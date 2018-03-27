@@ -89,4 +89,8 @@ public class CourseServiceStub extends CourseService {
 
         this.compteur++;
     }
+
+    public void cancel() {
+        this.courses.get(this.courses.size() - 1).setCancelled(true);
+    }
 }

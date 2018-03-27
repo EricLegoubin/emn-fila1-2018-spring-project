@@ -154,3 +154,7 @@ td:nth-child(4) {
     align-items: center;
     justify-content: center;
 }
+
+.cancelled {
+    color: #ff2e1d;
+}

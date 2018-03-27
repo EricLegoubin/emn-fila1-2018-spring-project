@@ -104,4 +104,12 @@ public class CourseService {
 	public int countEntries() {
 		return courseRepository.countEntries();
 	}
+
+    public void duplicate() {
+    }
+
+	public void addRetard(String type) {
+	}
+
+	public void cancel() { }
 }

@@ -23,8 +23,10 @@
             <span class="heureDepart" th:if="${type == 'arrivees'}" th:text="${course.heureArrivee}"></span>
             <span class="gareArrive" th:if="${type == 'departs'}" th:text="${course.gareArrivee}"></span>
             <span class="gareArrive" th:if="${type == 'arrivees'}" th:text="${course.gareDepart}"></span>
-            <span class="retard" th:if="${type == 'arrivees'}" th:text="${course.getArriveeRetardMessage()}"></span>
-            <span class="retard" th:if="${type == 'departs'}" th:text="${course.getDepartRetardMessage()}"></span>
+
+            <span class="retard" th:if="${type == 'arrivees' and !course.getCancelled()}" th:text="${course.getArriveeRetardMessage()}"></span>
+            <span class="retard" th:if="${type == 'departs' and !course.getCancelled()}" th:text="${course.getDepartRetardMessage()}"></span>
+            <span class="retard" th:if="${course.getCancelled()}">Annule</span>
         </span>
     </div>
 </div>
@@ -35,6 +37,7 @@
 <div>
     <button id="ajout"> AJOUT LIGNE</button>
     <button id="retard"> AJOUT RETARD</button>
+    <button id="annuler">ANNULER</button>
 </div>
 
 </body>

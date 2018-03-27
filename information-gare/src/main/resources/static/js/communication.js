@@ -6,6 +6,12 @@ $(document).ready(function () {
         }).length;
     }
 
+    function getNbAnnule() {
+        return $('#container').find('span.retard').filter(function () {
+            return $(this).html().toString().search('Annulé') !== -1;
+        }).length;
+    }
+
     function getNbRows() {
         return $('#container').find('tr').length;
     }
@@ -59,6 +65,7 @@ $(document).ready(function () {
     var gare = currentLocationSplit[2];
     var nbRows = getNbRows();
     var nbRetards = getNbRetards();
+    var nbAnnule = getNbAnnule();
 
     var audio = new Audio('../audio/jingleSNCF.wav');
 
@@ -83,6 +90,14 @@ $(document).ready(function () {
             data: {type: type}
         });
     });
+
+    $("#annuler").click(function (e) {
+        e.preventDefault();
+        $.ajax({
+            type: "POST",
+            url: "/testCancel"
+        });
+    });
     
     var scrollThread = null;
     resetScroll();
@@ -98,8 +113,13 @@ $(document).ready(function () {
 
                     checkAndToggleVisibility();
 
-                    if (nbRetards < getNbRetards()) {
-                        nbRetards = getNbRetards();
+                    if (nbRetards < getNbRetards() || nbAnnule < getNbAnnule()) {
+                        if(nbRetards < getNbRetards()){
+                            nbRetards = getNbRetards();
+                        }
+                        if(nbAnnule < getNbAnnule()){
+                            nbAnnule = getNbAnnule();
+                        }
 
                         var el = $('<div></div>');
                         el.html(responseText);
@@ -119,13 +139,23 @@ $(document).ready(function () {
                             var retardTxt = nowTr[indexDifference].children[3].innerText;
                             var retard = retardTxt.substring(retardTxt.lastIndexOf(": ") + 1, retardTxt.lastIndexOf(" min"));
                             //console.log(retard);
-                            if (type === 'departs') {
-                                msg.text = 'Le départ du train numero ' + numTrain + ' prévu à ' + heures + ' heures ' + minutes + ' à destination de ' + gare + ' ' +
-                                    'a un retard de ' + retard + ' minutes. Veuillez nous excuser pour la gêne occasionnée';
+
+                            console.log(retardTxt);
+                            var truc = "";
+                            if (retardTxt.trim() !== 'Annulé') {
+                                truc = 'a un retard de ' + retard + ' minutes.';
                             } else {
-                                msg.text = 'Le train numero ' + numTrain + ' venant de ' + gare + 'prévu à ' + heures + ' heures ' + minutes +
-                                    'a un retard de ' + retard + ' minutes. Veuillez nous excuser pour la gêne occasionnée';
+                                truc = 'a été annulé.';
                             }
+
+                            if (type === 'departs') {
+                                msg.text = 'Le départ du train numero ' + numTrain + ' prévu à ' + heures + ' heures ' + minutes + ' à destination de ' + gare + ' '
+                                    + truc + ' Veuillez nous excuser pour la gêne occasionnée';
+                            } else {
+                                msg.text = 'Le train numero ' + numTrain + ' venant de ' + gare + 'prévu à ' + heures + ' heures ' + minutes + ' '
+                                    + truc + ' Veuillez nous excuser pour la gêne occasionnée';
+                            }
+
                             audio.play();
                             audio.addEventListener("ended", speak);
                         }

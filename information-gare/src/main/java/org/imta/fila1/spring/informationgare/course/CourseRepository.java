@@ -1,6 +1,6 @@
 package org.imta.fila1.spring.informationgare.course;
 
-import java.util.List;
+import java.util.Set;
 
 /**
  * Interface Repository des courses
@@ -10,7 +10,7 @@ import java.util.List;
  */
 public interface CourseRepository {
 
-	List<Course> findAll();
+	Set<Course> findAll();
 
 	void add(Course course);
 

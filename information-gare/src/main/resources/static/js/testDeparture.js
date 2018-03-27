@@ -10,6 +10,12 @@ $(document).ready(function () {
         }).length;
     }
 
+    function getNbAnnule() {
+        return $('#container').find('span.retard').filter(function () {
+            return $(this).html().toString().search('Annule') !== -1;
+        }).length;
+    }
+
     function speak() {
         window.speechSynthesis.speak(msg);
         audio.removeEventListener("ended", speak);
@@ -49,6 +55,7 @@ $(document).ready(function () {
     var gare = currentLocationSplit[2];
     var nbRows = 0;
     var nbRetards = getNbRetards();
+    var nbAnnule = getNbAnnule();
 
     var beforeTr = $('#container').find('div.oui');
     console.log(beforeTr);
@@ -83,6 +90,15 @@ $(document).ready(function () {
         });
     });
 
+    $("#annuler").click(function (e) {
+        console.log("CLIQUE ANNULER");
+        e.preventDefault();
+        $.ajax({
+            type: "POST",
+            url: "/testCancel"
+        });
+    });
+
     var indexDifference = -1;
 
     setInterval(function () {
@@ -90,9 +106,9 @@ $(document).ready(function () {
         $('#container').load('/update', {type: type, gare: gare, style: 'old'},
             function (responseText, textStatus, XMLHttpRequest) {
                 if (textStatus === "success") {
-
-                    if (nbRetards < getNbRetards()) {
+                    if (nbRetards < getNbRetards() || nbAnnule < getNbAnnule()) {
                         nbRetards = getNbRetards();
+                        nbAnnule = getNbAnnule();
 
                         var el = $('<div></div>');
                         el.html(responseText);
@@ -101,7 +117,7 @@ $(document).ready(function () {
                         console.log(beforeTr);
                         console.log("nowTr");
                         console.log(nowTr);
-                        indexDifference = findModifiedRow(beforeTr,nowTr);
+                        indexDifference = findModifiedRow(beforeTr, nowTr);
                         console.log(indexDifference);
 
                         beforeTr = nowTr;
@@ -115,20 +131,29 @@ $(document).ready(function () {
 
                             var retardTxt = nowTr[indexDifference].children[0].children[3].innerText;
                             var retard = retardTxt.substring(retardTxt.lastIndexOf(": ") + 1, retardTxt.lastIndexOf(" min"));
-                            if (type === 'departs') {
-                                msg.text = 'Le départ du train numero ' + numTrain + ' prévu à ' + heures + ' heures ' + minutes + ' à destination de ' + gare + ' ' +
-                                    'a un retard de ' + retard + ' minutes. Veuillez nous excuser pour la gêne occasionnée';
+
+                            var truc = "";
+                            if (retardTxt !== 'Annule') {
+                                truc = 'a un retard de ' + retard + ' minutes.';
                             } else {
-                                msg.text = 'Le train numero ' + numTrain + ' venant de ' + gare + 'prévu à ' + heures + ' heures ' + minutes +
-                                    'a un retard de ' + retard + ' minutes. Veuillez nous excuser pour la gêne occasionnée';
+                                truc = 'a été annulé.';
                             }
+
+                            if (type === 'departs') {
+                                msg.text = 'Le départ du train numero ' + numTrain + ' prévu à ' + heures + ' heures ' + minutes + ' à destination de ' + gare + ' '
+                                    + truc + ' Veuillez nous excuser pour la gêne occasionnée';
+                            } else {
+                                msg.text = 'Le train numero ' + numTrain + ' venant de ' + gare + 'prévu à ' + heures + ' heures ' + minutes + ' '
+                                    + truc + ' Veuillez nous excuser pour la gêne occasionnée';
+                            }
+
                             audio.play();
                             audio.addEventListener("ended", speak);
                         }
                     }
 
-                    if(nbRows < getNbRows() || indexDifference !== -1){
-                        if(nbRows === getNbRows() - 1){
+                    if (nbRows < getNbRows() || indexDifference !== -1) {
+                        if (nbRows === getNbRows() - 1) {
                             audio.play();
                         }
                         nbRows = getNbRows();
@@ -139,16 +164,17 @@ $(document).ready(function () {
 
                         var array = [];
                         for (var i = 0; i < nowTr.length; i++) {
-                            var numTrain = pad(Array(5).join(' '),nowTr[i].children[0].innerHTML,false);
+                            var numTrain = pad(Array(5).join(' '), nowTr[i].children[0].innerHTML, false);
                             var heure = nowTr[i].children[1].innerHTML;
-                            var ville = pad(Array(24).join(' '),nowTr[i].children[2].innerHTML,false);
+                            var ville = pad(Array(24).join(' '), nowTr[i].children[2].innerHTML, false);
                             var retard = nowTr[i].children[3].innerHTML;
+                            console.log(retard);
                             array.push(numTrain + " " + heure + " " + ville + " " + retard);
                         }
-                        if(indexDifference !== -1){
-                            board.setValue(array,0);
+                        if (indexDifference !== -1) {
+                            board.setValue(array, 0);
                         } else {
-                            board.setValue(array,200);
+                            board.setValue(array, 200);
                         }
                         indexDifference = -1;
                     }
