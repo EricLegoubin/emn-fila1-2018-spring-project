@@ -8,7 +8,7 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 
 @Service
-public class CourseServiceStub extends CourseService {
+public class CourseServiceStub {
 
     private ArrayList<Course> courses;
     private int compteur = 1;
@@ -18,9 +18,6 @@ public class CourseServiceStub extends CourseService {
     public CourseServiceStub() {
 
         courses = new ArrayList<>();
-
-        //this.addCourse();
-
     }
 
     public void duplicate() {
@@ -35,9 +32,7 @@ public class CourseServiceStub extends CourseService {
         }
     }
 
-    @Override
     public List<Course> getDeparts(String aGare) {
-
         ArrayList<Course> vDeparts = new ArrayList<>();
         for (Course vCourse : courses) {
             if (vCourse.isGareDepart(aGare) && vCourse.getPassageDepart().getTimestamp().before(new Timestamp(System.currentTimeMillis() + tempsAffichageMax))) {
@@ -47,7 +42,6 @@ public class CourseServiceStub extends CourseService {
         return vDeparts;
     }
 
-    @Override
     public List<Course> getArrivees(String aGare) {
 
         ArrayList<Course> vDeparts = new ArrayList<>();
@@ -83,10 +77,7 @@ public class CourseServiceStub extends CourseService {
         vPassages.add(new Passage(new Timestamp(vCalendar.getTimeInMillis() + 4 * 60 * 60 * 1000), 3, vArrivee));
 
         Course course = new Course(1, this.compteur, vSillons, vPassages);
-        //course.setRetardArrivee(5);
-        //course.setRetardDepart(10);
         courses.add(course);
-
         this.compteur++;
     }
 

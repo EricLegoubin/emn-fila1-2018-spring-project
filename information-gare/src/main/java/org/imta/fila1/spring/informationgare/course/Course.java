@@ -181,7 +181,6 @@ public class Course {
 	public void setCancelled(boolean cancelled) {
 		isCancelled = cancelled;
 	}
-}
 
 	@Override
 	public boolean equals(Object c) {

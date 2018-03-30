@@ -12,60 +12,51 @@ import org.springframework.web.servlet.ModelAndView;
 @RestController
 public class CourseController {
 
-	@Autowired
-	private CourseService courseService;
+    @Autowired
+    private CourseServiceStub courseService;
 
-	@RequestMapping("/departs/{gare}")
-	public ModelAndView getDeparts(@PathVariable String gare, @RequestParam Optional<String> salt) {
-		if (salt.isPresent()) {
-			return getCourse("departs", gare, "departureView");
-		} else {
-			return getCourse("departs", gare, "coursesView");
-		}
-	}
+    @RequestMapping("/departs/{gare}")
+    public ModelAndView getDeparts(@PathVariable String gare, @RequestParam Optional<String> salt) {
+        if (salt.isPresent()) {
+            return getCourse("departs", gare, "departureView");
+        } else {
+            return getCourse("departs", gare, "coursesView");
+        }
+    }
 
-	@RequestMapping("/arrivees/{gare}")
-	public ModelAndView getArrivees(@PathVariable String gare, @RequestParam Optional<String> salt) {
-		if (salt.isPresent()) {
-			return getCourse("arrivees", gare, "departureView");
-		} else {
-			return getCourse("arrivees", gare, "coursesView");
-		}
-	}
+    @RequestMapping("/arrivees/{gare}")
+    public ModelAndView getArrivees(@PathVariable String gare, @RequestParam Optional<String> salt) {
+        if (salt.isPresent()) {
+            return getCourse("arrivees", gare, "departureView");
+        } else {
+            return getCourse("arrivees", gare, "coursesView");
+        }
+    }
 
-	public ModelAndView getCourse(String aType, String aGare, String template) {
-		ModelAndView vView = new ModelAndView("errorView");
-		if (aGare != null) {
-			vView = new ModelAndView(template);
-			if (aType.equals("departs")) {
-				vView.addObject("courses", courseService.getDeparts(aGare));
-			} else {
-				vView.addObject("courses", courseService.getArrivees(aGare));
-			}
-			vView.addObject("gare", aGare);
-			vView.addObject("type", aType);
-		}
-		return vView;
-	}
+    public ModelAndView getCourse(String aType, String aGare, String template) {
+        ModelAndView vView = new ModelAndView("errorView");
+        if (aGare != null) {
+            vView = new ModelAndView(template);
+            if (aType.equals("departs")) {
+                vView.addObject("courses", courseService.getDeparts(aGare));
+            } else {
+                vView.addObject("courses", courseService.getArrivees(aGare));
+            }
+            vView.addObject("gare", aGare);
+            vView.addObject("type", aType);
+        }
+        return vView;
+    }
 
-	// @RequestMapping(path = "testAdd")
-	// public void testAdd() {
-	// courseService.duplicate();
-	// } @RequestMapping(path = "testAdd")
-	// public void testAdd() {
-	// courseService.duplicate();
-	// }
-	//
-	// @RequestMapping(path = "testAddRetard")
-	// public void testAddRetard(@RequestParam("type") String type) {
-	// courseService.addRetard(type);
-	// }
+    @RequestMapping(path = "testAdd")
+    public void testAdd() {
+        courseService.duplicate();
+    }
 
-	//
-	// @RequestMapping(path = "testAddRetard")
-	// public void testAddRetard(@RequestParam("type") String type) {
-	// courseService.addRetard(type);
-	// }
+    @RequestMapping(path = "testAddRetard")
+    public void testAddRetard(@RequestParam("type") String type) {
+        courseService.addRetard(type);
+    }
 
     @RequestMapping(path = "testCancel")
     public void testAddRetard() {
@@ -74,19 +65,10 @@ public class CourseController {
 
     @RequestMapping(value = "/update")
     public ModelAndView someMethod(@RequestParam("type") String type, @RequestParam("gare") String gare, @RequestParam String style) {
-        if(style.equals("old")){
+        if (style.equals("old")) {
             return getCourse(type, gare, "departureView :: list");
         } else {
             return getCourse(type, gare, "coursesView :: resultsList");
         }
     }
-	@RequestMapping(value = "/update")
-	public ModelAndView someMethod(@RequestParam("type") String type, @RequestParam("gare") String gare,
-			@RequestParam String style) {
-		if (style.equals("old")) {
-			return getCourse(type, gare, "departureView :: list");
-		} else {
-			return getCourse(type, gare, "coursesView :: resultsList");
-		}
-	}
 }

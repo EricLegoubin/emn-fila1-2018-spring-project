@@ -24,7 +24,6 @@ public class MajToCourseConverter implements Runnable {
 	@Override
 	public void run() {
 		while (true) {
-			System.out.println("COUCOU");
 			MajObject currentCourse;
 			try {
 				currentCourse = queue.take();
